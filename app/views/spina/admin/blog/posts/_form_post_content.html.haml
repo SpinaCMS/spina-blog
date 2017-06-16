@@ -1,0 +1,36 @@
+#post_content.tab-content.active.well
+  .horizontal-form
+    .horizontal-form-group
+      .horizontal-form-label
+        = Spina::Blog::Post.human_attribute_name :title
+      .horizontal-form-content
+        = f.text_field :title, placeholder: Spina::Blog::Post.human_attribute_name(:title_placeholder)
+
+    .horizontal-form-group
+      .horizontal-form-label
+        = Spina::Blog::Post.human_attribute_name :excerpt
+      .horizontal-form-content
+        = render 'spina/admin/shared/rich_text_field', f: f, field: :excerpt
+
+
+    .horizontal-form-group
+      .horizontal-form-label
+        = Spina::Blog::Post.human_attribute_name :content
+      .horizontal-form-content
+        = render 'spina/admin/shared/rich_text_field', f: f, field: :content
+
+    .horizontal-form-group
+      .horizontal-form-label
+        = Spina::Blog::Post.human_attribute_name :photo
+      .horizontal-form-content
+        = link_to spina.photo_select_admin_photos_path(f.object_name, selected_photo_id: f.object.try(:photo_id), hidden_field_id: 'photo_id'), remote: true, class: 'media_picker clearfix' do
+          .placeholder
+            %span.button.button-small.button-round
+              %i.icon.icon-dots
+              =t 'spina.pages.photo_picker'
+
+          - if f.object.photo && f.object.photo.file.present?
+            .image
+              = image_tag f.object.photo.file.thumb
+
+          = f.hidden_field :photo_id, data: { hidden_field_id: 'photo_id'}

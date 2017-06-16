@@ -1,0 +1,3 @@
+= form_for [spina, :admin, @category], url: spina.admin_blog_category_path(@category.id),
+  html: {id: 'category_form', autocomplete: "off"} do |f|
+  = render 'form', f: f
