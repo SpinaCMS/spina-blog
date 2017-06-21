@@ -16,13 +16,13 @@ Gem::Specification.new do |s|
 
   s.files = Dir["{app,config,db,lib}/**/*", "MIT-LICENSE", "Rakefile", "README.md"]
 
-  s.add_dependency 'spina', '>= 0.11.1'
-  s.add_dependency 'friendly_id', '~> 5.2.1'
-  s.add_dependency 'draper', '>= 3.0.0'
+  s.add_runtime_dependency 'spina', '~> 0.11', '>= 0.11.1'
+  s.add_runtime_dependency 'friendly_id', '~> 5.2', '>= 5.2.1'
+  s.add_runtime_dependency 'draper', '~> 3.0', '>= 3.0.0'
 
-  s.add_development_dependency "sqlite3"
-  s.add_development_dependency 'simplecov'
+  s.add_development_dependency 'sqlite3', '~> 1.3.13', '>= 1.3.13'
+  s.add_development_dependency 'simplecov', '~> 0'
   s.add_development_dependency "factory_girl_rails", "~> 4.0"
-  s.add_development_dependency 'pry-rails'
-  s.add_development_dependency 'rails-controller-testing'
+  s.add_development_dependency 'pry-rails', '~> 0'
+  s.add_development_dependency 'rails-controller-testing', '~> 1.0.2', '>= 1.0.2'
 end
