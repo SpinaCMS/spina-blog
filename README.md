@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/initforthe/spina-blog.svg?branch=master)](https://travis-ci.org/initforthe/spina-blog)
+
 # Spina::Blog
 Short description and motivation.
 
