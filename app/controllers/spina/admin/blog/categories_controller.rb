@@ -69,7 +69,7 @@ module Spina
       end
 
       def category_params
-        params.require(:blog_category).permit(:name)
+        params.require(:category).permit(:name)
       end
 
     end

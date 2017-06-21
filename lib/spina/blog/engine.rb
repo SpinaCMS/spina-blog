@@ -5,7 +5,7 @@ require 'spina'
 module Spina
   module Blog
     class Engine < ::Rails::Engine
-      isolate_namespace Spina
+      isolate_namespace Spina::Blog
 
       initializer "register plugin" do
         ::Spina::Plugin.register do |plugin|
