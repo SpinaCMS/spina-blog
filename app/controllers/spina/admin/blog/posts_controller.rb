@@ -37,7 +37,7 @@ module Spina
       def create
         @post = Spina::Blog::Post.new post_params
         if @post.save
-          redirect_to spina.edit_admin_blog_post_url(@post.id)
+          redirect_to spina.edit_admin_blog_post_url(@post.id), notice: t('spina.blog.posts.saved')
         else
           add_breadcrumb I18n.t('spina.blog.posts.new')
           render :new, layout: 'spina/admin/admin'
@@ -58,7 +58,7 @@ module Spina
             add_breadcrumb @post.title
             @post.touch
             I18n.locale = I18n.default_locale
-            format.html { redirect_to spina.edit_admin_blog_post_url(@post.id, params: {locale: @locale}) }
+            format.html { redirect_to spina.edit_admin_blog_post_url(@post.id, params: {locale: @locale}), notice: t('spina.blog.posts.saved') }
             format.js
           else
             format.html do

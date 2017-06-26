@@ -8,13 +8,14 @@ module Spina
 
     belongs_to :photo
     belongs_to :spina_user
-    belongs_to :category, class_name: 'Spina::Blog::Category'
+    belongs_to :category, class_name: 'Spina::Blog::Category', inverse_of: :posts
 
     validates :title, :content, presence: true
 
     before_save :set_published_at
 
-    scope :future, -> { where('published_at >= ?', Time.zone.now ) }
+    scope :available, -> { where('published_at <= ?', Time.zone.now) }
+    scope :future, -> { where('published_at >= ?', Time.zone.now) }
     scope :draft, -> { where(draft: true) }
     scope :live, -> { where(draft: false) }
 

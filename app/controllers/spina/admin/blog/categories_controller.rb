@@ -21,7 +21,7 @@ module Spina
       def create
         @category = Spina::Blog::Category.new category_params
         if @category.save
-          redirect_to spina.edit_admin_blog_category_url(@category.id)
+          redirect_to spina.edit_admin_blog_category_url(@category.id), notice: t('spina.blog.categories.saved')
         else
           add_breadcrumb I18n.t('spina.blog.categories.new')
           render :new, layout: 'spina/admin/admin'
@@ -42,7 +42,7 @@ module Spina
             add_breadcrumb @category.name
             @category.touch
             I18n.locale = I18n.default_locale
-            format.html { redirect_to spina.edit_admin_blog_category_url(@category.id, params: {locale: @locale}) }
+            format.html { redirect_to spina.edit_admin_blog_category_url(@category.id, params: {locale: @locale}), notice: t('spina.blog.categories.saved') }
             format.js
           else
             format.html do

@@ -10,6 +10,7 @@ en:
         new: New Post
         save: Save post
         saving: Saving...
+        saved: Post saved
         post_content: Content
         post_configuration: Settings
         concept: Draft
@@ -20,6 +21,7 @@ en:
         name: Categories
         save: Save category
         saving: Saving...
+        saved: Category saved
 
   activerecord:
     attributes:
