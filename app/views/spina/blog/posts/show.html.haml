@@ -1,0 +1,6 @@
+%h1= @post.title
+
+- if @post.photo
+  = image_tag @post.photo.file.image.url
+
+!= @post.content

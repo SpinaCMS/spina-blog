@@ -8,3 +8,4 @@ spec/dummy/tmp/
 coverage
 Gemfile.lock
 spec/examples.txt
+*.gem

@@ -21,14 +21,14 @@ RSpec.describe Spina::Blog::PostsController, type: :controller do
       expect(assigns(:posts)).to match_array live_past_posts
     }
 
-    context 'when signed in' do
-      before { sign_in }
-
-      it {
-        subject
-        expect(assigns(:posts)).to match_array(draft_past_posts + live_past_posts)
-      }
-    end
+    # context 'when signed in' do
+    #   before { sign_in }
+    #
+    #   it {
+    #     subject
+    #     expect(assigns(:posts)).to match_array(draft_past_posts + live_past_posts)
+    #   }
+    # end
   end
 
   describe 'GET #show' do

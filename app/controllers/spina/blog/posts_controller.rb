@@ -1,15 +1,15 @@
 module Spina
-  class Blog::PostsController < ApplicationController
+  class Blog::PostsController < ::Spina::ApplicationController
 
     def index
       @posts = Spina::Blog::Post.available.live.order(published_at: :desc).page(params[:page])
 
-      if current_user and current_user.admin?
-        @posts = @posts.unscope(where: :draft)
-      end
+      # if current_spina_user and current_spina_user.admin?
+      #   @posts = @posts.unscope(where: :draft)
+      # end
 
       respond_to do |format|
-        format.rss
+        format.atom
         format.html
       end
     end
@@ -20,10 +20,10 @@ module Spina
 
     def archive
       if params[:year] and params[:month]
-        start = Date.new params[:year].to_i, params[:month].to_i
+        start = Time.new params[:year].to_i, params[:month].to_i
         finish = start.end_of_month
       elsif params[:year]
-        start = Date.new params[:year].to_i
+        start = Time.new params[:year].to_i
         finish = start.end_of_year
       end
 

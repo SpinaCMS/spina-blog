@@ -7,7 +7,7 @@ module Spina
     friendly_id :title, use: :slugged
 
     belongs_to :photo
-    belongs_to :spina_user
+    belongs_to :spina_user, class_name: 'Spina::User'
     belongs_to :category, class_name: 'Spina::Blog::Category', inverse_of: :posts
 
     validates :title, :content, presence: true
