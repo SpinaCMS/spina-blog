@@ -28,5 +28,5 @@ Gem::Specification.new do |s|
   s.add_development_dependency "factory_girl_rails", "~> 4.0"
   s.add_development_dependency 'pry-rails', '~> 0'
   s.add_development_dependency 'rails-controller-testing', '~> 1.0.2', '>= 1.0.2'
-  s.add_development_dependency 'capybara', '~> 2.4.13', '>= 2.4.13'
+  s.add_development_dependency 'capybara', '~> 2.14.3', '>= 2.14.3'
 end
