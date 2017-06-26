@@ -1,6 +1,8 @@
 module Spina
   class Blog::PostsController < ::Spina::ApplicationController
 
+    before_action :set_page
+
     def index
       @posts = Spina::Blog::Post.available.live.order(published_at: :desc).page(params[:page])
 
@@ -10,12 +12,14 @@ module Spina
 
       respond_to do |format|
         format.atom
-        format.html
+        format.html { render layout: "#{current_theme.name.parameterize.underscore}/application" }
       end
     end
 
     def show
       @post = Spina::Blog::Post.friendly.find params[:id]
+
+      render layout: "#{current_theme.name.parameterize.underscore}/application"
     end
 
     def archive
@@ -31,6 +35,17 @@ module Spina
         .where(published_at: start..finish)
         .order(published_at: :desc)
         .page(params[:page])
+
+      render layout: "#{current_theme.name.parameterize.underscore}/application"
+    end
+
+    private
+
+    def set_page
+      @page = Spina::Page.find_or_create_by link_url: '/blog' do |page|
+        page.name = 'Blog'
+        page.deletable = false
+      end
     end
   end
 end
