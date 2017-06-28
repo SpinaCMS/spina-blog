@@ -1,6 +1,7 @@
 require 'rails_helper'
 
 RSpec.feature "Posts", type: :feature do
+  let!(:account) { ::Spina::Account.create name: 'MySite', theme: 'default' }
 
   describe 'listing posts' do
     let!(:posts) { FactoryGirl.create_list :spina_blog_post, 3, draft: false, published_at: Date.today - 1 }

@@ -1,6 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe Spina::Blog::PostsController, type: :controller do
+  let!(:account) { ::Spina::Account.create name: 'MySite', theme: 'default' }
+
   routes { Spina::Engine.routes }
 
   let(:draft_past_posts) { FactoryGirl.create_list :spina_blog_post, 3, draft: true, published_at: Date.today - 10 }
