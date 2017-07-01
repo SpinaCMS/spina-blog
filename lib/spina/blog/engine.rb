@@ -1,7 +1,3 @@
-require 'friendly_id'
-require 'draper'
-require 'spina'
-
 module Spina
   module Blog
     class Engine < ::Rails::Engine
