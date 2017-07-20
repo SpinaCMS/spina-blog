@@ -8,5 +8,9 @@ module Spina
 
     has_many :posts, class_name: 'Spina::Blog::Post', inverse_of: :category
     validates :name, presence: true
+
+    def to_s
+      name
+    end
   end
 end

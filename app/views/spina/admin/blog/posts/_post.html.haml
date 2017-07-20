@@ -10,7 +10,7 @@
           Will be published on #{post.decorate.published_date}
 
   %td.nowrap.text-right
-    = link_to spina.blog_post_path(post), class: 'button button-small button-link dd-nodrag' do
+    = link_to spina.blog_post_path(post), class: 'button button-small button-link dd-nodrag', target: '_blank' do
       = icon 'eye'
       = t('spina.view')
 

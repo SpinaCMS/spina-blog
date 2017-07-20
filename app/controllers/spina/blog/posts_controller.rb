@@ -2,10 +2,9 @@ module Spina
   class Blog::PostsController < ::Spina::ApplicationController
 
     before_action :set_page
+    before_action :find_posts, only: [:index]
 
     def index
-      @posts = Spina::Blog::Post.available.live.order(published_at: :desc).page(params[:page])
-
       # if current_spina_user and current_spina_user.admin?
       #   @posts = @posts.unscope(where: :draft)
       # end
@@ -42,10 +41,14 @@ module Spina
     private
 
     def set_page
-      @page = Spina::Page.find_or_create_by link_url: '/blog' do |page|
-        page.name = 'Blog'
+      @page = Spina::Page.find_or_create_by name: 'blog' do |page|
+        page.link_url = '/blog'
         page.deletable = false
       end
+    end
+
+    def find_posts
+      @posts = Spina::Blog::Post.available.live.order(published_at: :desc).page(params[:page])
     end
   end
 end
