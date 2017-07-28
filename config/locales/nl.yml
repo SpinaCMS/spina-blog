@@ -1,0 +1,42 @@
+nl:
+  spina:
+    view: View
+
+    blog:
+      title: Blog
+
+      posts:
+        title: Posts
+        new: Nieuwe post
+        save: Post opslaan
+        saving: Opslaan...
+        saved: Post opgeslagen
+        post_content: Inhoud
+        post_configuration: Instellingen
+        concept: Concept
+
+      categories:
+        title: Categorieën
+        new: Nieuwe categorie
+        name: Categoriën
+        save: Categorie opslaan
+        saving: Opslaan...
+        saved: Categorie opgeslagen
+
+  activerecord:
+    attributes:
+      spina/blog/post:
+        title: Post titel
+        title_placeholder: Post titel
+        content: Post inhoud
+        draft: Concept
+        draft_description: Handig voor als je post nog niet helemaal af is
+        published_at: Publicatiedatum/tijd
+        slug: Permalink
+        slug_description: Permalink URL for this post
+        excerpt: Uittreksel
+        spina_user: Auteur
+        photo: Afbeelding
+      spina/blog/category:
+        name: Naam categorie
+        name_placeholder: Naam categorie
