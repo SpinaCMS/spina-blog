@@ -42,6 +42,7 @@ module Spina
 
     def set_page
       @page = Spina::Page.find_or_create_by name: 'blog' do |page|
+        page.title = 'Blog'
         page.link_url = '/blog'
         page.deletable = false
       end
