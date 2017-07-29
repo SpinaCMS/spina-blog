@@ -54,11 +54,8 @@ module Spina
     end
 
     def try_redirect
-      if rule = RewriteRule.find_by(old_path: "/blog/posts/#{params[:id]}")
-        redirect_to rule.new_path, status: :moved_permanently
-      else
-        raise ActiveRecord::RecordNotFound
-      end
+      rule = RewriteRule.find_by!(old_path: "/blog/posts/#{params[:id]}")
+      redirect_to rule.new_path, status: :moved_permanently
     end
   end
 end
