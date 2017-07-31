@@ -2,6 +2,7 @@
 
   theme.name = 'default'
   theme.title = 'Default Theme'
+  theme.plugins = ['blog']
 
   theme.page_parts = [{
     name:           'text',
