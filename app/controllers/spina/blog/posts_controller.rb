@@ -17,8 +17,9 @@ module Spina
 
     def show
       @post = Spina::Blog::Post.friendly.find params[:id]
-
       render layout: "#{current_theme.name.parameterize.underscore}/application"
+    rescue ActiveRecord::RecordNotFound
+      try_redirect
     end
 
     def archive
@@ -42,6 +43,7 @@ module Spina
 
     def set_page
       @page = Spina::Page.find_or_create_by name: 'blog' do |page|
+        page.title = 'Blog'
         page.link_url = '/blog'
         page.deletable = false
       end
@@ -49,6 +51,11 @@ module Spina
 
     def find_posts
       @posts = Spina::Blog::Post.available.live.order(published_at: :desc).page(params[:page])
+    end
+
+    def try_redirect
+      rule = RewriteRule.find_by!(old_path: "/blog/posts/#{params[:id]}")
+      redirect_to rule.new_path, status: :moved_permanently
     end
   end
 end
