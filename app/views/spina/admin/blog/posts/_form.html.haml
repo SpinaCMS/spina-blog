@@ -40,4 +40,4 @@
     = render "spina/admin/blog/posts/form_#{tab}", f: f
 
   - unless @post.new_record?
-    .pull-right= link_to t('spina.permanently_delete'), spina.admin_blog_post_path(@post), method: :delete, data: {confirm: t('spina.post.delete_confirmation', subject: @post.title)}, class: 'button button-link button-danger'
+    .pull-right= link_to t('spina.permanently_delete'), spina.admin_blog_post_path(@post.id), method: :delete, data: {confirm: t('spina.post.delete_confirmation', subject: @post.title)}, class: 'button button-link button-danger'
