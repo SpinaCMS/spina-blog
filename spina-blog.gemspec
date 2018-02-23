@@ -17,10 +17,10 @@ Gem::Specification.new do |s|
   s.files = Dir["{app,config,db,lib}/**/*", "MIT-LICENSE", "Rakefile", "README.md"]
   s.test_files = Dir["spec/**/*"]
 
-  s.add_runtime_dependency 'spina', '~> 0.11', '>= 0.11.1'
+  s.add_runtime_dependency 'spina', '>= 0.11.1'
   s.add_runtime_dependency 'friendly_id', '~> 5.2', '>= 5.2.1'
   s.add_runtime_dependency 'draper', '~> 3.0', '>= 3.0.0'
-  s.add_runtime_dependency 'kaminari', '~> 1.0.1', '>= 1.0.1'
+  s.add_runtime_dependency 'kaminari', '>= 1.0.1'
 
   s.add_development_dependency 'pg'
   s.add_development_dependency 'simplecov', '~> 0'

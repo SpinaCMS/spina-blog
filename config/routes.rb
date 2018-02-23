@@ -2,7 +2,11 @@ Spina::Engine.routes.draw do
   namespace :blog do
     root to: 'posts#index'
 
-    resources :posts, only: [:index, :show]
+    get ':id', to: 'posts#show', as: :post
+
+    # Redirects for old sites that used the old blog path
+    get 'posts/', to: redirect('/blog'), as: :old_index
+    get 'posts/:id', to: redirect('/blog/%{id}'), as: :old_post
 
     get 'feed.atom', to: 'posts#index', as: :rss_feed, defaults: { format: :atom }
     get 'categories/:id', to: 'categories#show', as: :category

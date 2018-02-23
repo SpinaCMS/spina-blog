@@ -31,6 +31,6 @@
 
           - if f.object.photo && f.object.photo.file.present?
             .image
-              = image_tag f.object.photo.file.thumb
+              = image_tag f.object.photo.file.thumb.url
 
           = f.hidden_field :photo_id, data: { hidden_field_id: 'photo_id'}
