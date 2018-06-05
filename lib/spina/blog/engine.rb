@@ -1,11 +1,14 @@
+# frozen_string_literal: true
+
 module Spina
   module Blog
+    # Spina::Blog::Engine
     class Engine < ::Rails::Engine
       isolate_namespace Spina::Blog
 
       config.before_initialize do
         ::Spina::Plugin.register do |plugin|
-          plugin.name = "blog"
+          plugin.name = 'blog'
           plugin.namespace = 'blog'
         end
       end
@@ -16,7 +19,6 @@ module Spina
         g.assets false
         g.helper false
       end
-
     end
   end
 end

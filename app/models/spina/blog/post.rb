@@ -1,39 +1,44 @@
-require_dependency 'spina/blog'
+# frozen_string_literal: true
 
 module Spina
-  class Blog::Post < ApplicationRecord
-    extend FriendlyId
+  module Blog
+    # Spina::Blog::Post
+    class Post < ApplicationRecord
+      extend FriendlyId
 
-    friendly_id :title, use: :slugged
+      friendly_id :title, use: :slugged
 
-    belongs_to :photo, optional: true
-    belongs_to :spina_user, class_name: 'Spina::User'
-    belongs_to :category, class_name: 'Spina::Blog::Category', inverse_of: :posts
+      belongs_to :image, optional: true
 
-    validates :title, :content, presence: true
+      belongs_to :user
+      belongs_to :category, inverse_of: :posts
 
-    before_save :set_published_at
+      validates :title, :content, presence: true
 
-    # Create a 301 redirect if the slug changed
-    after_save :rewrite_rule, if: -> { saved_change_to_slug? }
+      before_save :set_published_at
 
-    scope :available, -> { where('published_at <= ?', Time.zone.now) }
-    scope :future, -> { where('published_at >= ?', Time.zone.now) }
-    scope :draft, -> { where(draft: true) }
-    scope :live, -> { where(draft: false) }
+      # Create a 301 redirect if the slug changed
+      after_save :rewrite_rule, if: -> { saved_change_to_slug? }
 
-    private
+      scope :available, -> { where('published_at <= ?', Time.zone.now) }
+      scope :future, -> { where('published_at >= ?', Time.zone.now) }
+      scope :draft, -> { where(draft: true) }
+      scope :live, -> { where(draft: false) }
 
-    def set_published_at
-      self.published_at = Time.now if !draft? and published_at.blank?
-    end
+      private
 
-    def should_generate_new_friendly_id?
-      slug.blank? || draft_changed? || super
-    end
+      def set_published_at
+        self.published_at = Time.now if !draft? && published_at.blank?
+      end
 
-    def rewrite_rule
-      RewriteRule.create(old_path: "/blog/posts/#{slug_before_last_save}", new_path: "/blog/posts/#{slug}")
+      def should_generate_new_friendly_id?
+        slug.blank? || draft_changed? || super
+      end
+
+      def rewrite_rule
+        RewriteRule.create(old_path: "/blog/posts/#{slug_before_last_save}",
+                           new_path: "/blog/posts/#{slug}")
+      end
     end
   end
 end

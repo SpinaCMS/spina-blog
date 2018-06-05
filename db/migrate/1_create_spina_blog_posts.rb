@@ -4,7 +4,11 @@ class CreateSpinaBlogPosts < ActiveRecord::Migration[5.0]
       t.string :title
       t.text :excerpt
       t.text :content
-      t.belongs_to :photo
+      t.references :image, foreign_key: { to_table: :spina_images }
+      t.boolean :draft
+      t.datetime :published_at
+      t.string :slug, unique: true, index: true
+      t.references :user, foreign_key: { to_table: :spina_users }
 
       t.timestamps
     end

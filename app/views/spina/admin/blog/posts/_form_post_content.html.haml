@@ -21,16 +21,16 @@
 
     .horizontal-form-group
       .horizontal-form-label
-        = Spina::Blog::Post.human_attribute_name :photo
+        = Spina::Blog::Post.human_attribute_name :image_id
       .horizontal-form-content
-        = link_to spina.photo_select_admin_photos_path(f.object_name, selected_photo_id: f.object.try(:photo_id), hidden_field_id: 'photo_id'), remote: true, class: 'media_picker clearfix' do
+        = link_to admin_media_picker_path(selected_ids: [f.object.image_id], hidden_field_id: 'media_picker_image_id'), remote: true, class: 'media_picker clearfix' do
           .placeholder
             %span.button.button-small.button-round
               %i.icon.icon-dots
-              =t 'spina.pages.photo_picker'
+              =t 'spina.images.choose_image'
 
-          - if f.object.photo && f.object.photo.file.present?
+          - if f.object&.image&.file&.attached?
             .image
-              = image_tag f.object.photo.file.thumb.url
+              = image_tag variant(f.object.image.file, resize: "300x300^", crop: "300x300+0+0")
 
-          = f.hidden_field :photo_id, data: { hidden_field_id: 'photo_id'}
+          = f.hidden_field :image_id, data: { hidden_field_id: "media_picker_image_id" }

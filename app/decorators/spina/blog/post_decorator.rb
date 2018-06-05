@@ -1,8 +1,12 @@
-module Spina
-  class Blog::PostDecorator < Draper::Decorator
+# frozen_string_literal: true
 
-    def published_date
-      l model.published_at, format: :long
+module Spina
+  module Blog
+    # Spina::Blog::PostDecorator
+    class PostDecorator < Draper::Decorator
+      def published_date
+        l model.published_at, format: :long
+      end
     end
   end
 end

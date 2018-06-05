@@ -38,5 +38,5 @@
         = Spina::Blog::Post.human_attribute_name :spina_user
       .horizontal-form-content
         .select-dropdown
-          = f.select :spina_user_id, Spina::User.all.collect{|u| [u.name, u.id]},
+          = f.select :user_id, Spina::User.all.collect{|u| [u.name, u.id]},
             include_blank: true, prompt: true

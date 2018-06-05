@@ -1,4 +1,7 @@
+# frozen_string_literal: true
+
 module Spina
+  # Spina::Blog
   module Blog
     include ActiveSupport::Configurable
 

@@ -1,13 +1,16 @@
+# frozen_string_literal: true
+
 module Spina
   module Blog
+    # Spina::Blog::PostsHelper
     module PostsHelper
       def formatted_date(year, month)
         if month
           date = Date.new year.to_i, month.to_i
-          return date.strftime("%B %Y")
+          date.strftime('%B %Y')
         else
           date = Date.new year.to_i
-          return date.strftime("%Y")
+          date.strftime('%Y')
         end
       end
     end

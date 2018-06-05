@@ -1,5 +1,6 @@
-class CreateFriendlyIdSlugs < ActiveRecord::Migration[5.0]
+class CreateSpinaBlogFriendlyIdSlugs < ActiveRecord::Migration[5.0]
   def change
+    return if ActiveRecord::Base.connection.table_exists? 'friendly_id_slugs'
     create_table :friendly_id_slugs do |t|
       t.string   :slug,           :null => false
       t.integer  :sluggable_id,   :null => false

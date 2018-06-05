@@ -1,29 +1,32 @@
+# frozen_string_literal: true
+
 module Spina
-  class Blog::CategoriesController < ApplicationController
+  module Blog
+    # Spina::Blog::CategoriesController
+    class CategoriesController < ApplicationController
+      before_action :page
+      before_action :category
+      before_action :posts
 
-    before_action :set_page
-    before_action :find_category
-    before_action :find_posts
+      def show; end
 
-    def show
-    end
+      private
 
-    private
+      def category
+        @category = Spina::Blog::Category.friendly.find params[:id]
+      end
 
-    def find_category
-      @category = Spina::Blog::Category.friendly.find params[:id]
-    end
+      def posts
+        @posts = @category.posts.available.live.order(published_at: :desc)
+                          .page(params[:page])
+      end
 
-    def find_posts
-      @posts = @category.posts.available.live.order(published_at: :desc).page(params[:page])
-    end
-
-    def set_page
-      @page = Spina::Page.find_or_create_by name: 'blog' do |page|
-        page.link_url = '/blog'
-        page.deletable = false
+      def page
+        @page = Spina::Page.find_or_create_by name: 'blog' do |page|
+          page.link_url = '/blog'
+          page.deletable = false
+        end
       end
     end
-
   end
 end
