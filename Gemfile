@@ -13,4 +13,4 @@ gemspec
 # To use a debugger
 # gem 'byebug', group: [:development, :test]
 gem 'pry-rails', group: [:development, :test]
-gem 'spina', git: 'https://github.com/SpinaCMS/Spina', branch: 'activestorage'
+gem 'spina', git: 'https://github.com/SpinaCMS/Spina'
