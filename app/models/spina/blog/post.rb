@@ -18,7 +18,7 @@ module Spina
       before_save :set_published_at
 
       # Create a 301 redirect if the slug changed
-      after_save :rewrite_rule, if: -> { saved_change_to_slug? }
+      after_save :rewrite_rule, if: -> { saved_change_to_slug? }, on: :update
 
       scope :available, -> { where('published_at <= ?', Time.zone.now) }
       scope :future, -> { where('published_at >= ?', Time.zone.now) }
@@ -36,8 +36,10 @@ module Spina
       end
 
       def rewrite_rule
-        RewriteRule.create(old_path: "/blog/posts/#{slug_before_last_save}",
-                           new_path: "/blog/posts/#{slug}")
+        ::Spina::RewriteRule.create(
+          old_path: "/blog/posts/#{slug_before_last_save}",
+          new_path: "/blog/posts/#{slug}"
+        )
       end
     end
   end
