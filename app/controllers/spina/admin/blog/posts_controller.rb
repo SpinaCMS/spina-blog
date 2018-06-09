@@ -5,7 +5,7 @@ module Spina
     module Blog
       # Spina::Admin::Blog::PostsController
       class PostsController < AdminController
-        before_action :post, except: %i[index new create]
+        before_action :post, except: %i[index live draft future new create]
         before_action :set_breadcrumb
         before_action :set_tabs, only: %i[new create edit update]
         before_action :set_locale

@@ -16,7 +16,7 @@ Spina::Engine.routes.draw do
   namespace :admin do
     namespace :blog do
       resources :categories
-      resources :posts do
+      resources :posts, except: :show do
         collection do
           get :live
           get :draft
