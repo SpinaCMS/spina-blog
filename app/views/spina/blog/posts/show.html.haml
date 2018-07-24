@@ -1,6 +1,6 @@
 %h1= @post.title
 
-- if @post.photo
-  = image_tag @post.photo.file.image.url
+- if @post.image
+  = image_tag main_app.url_for(@post.image.file)
 
 != @post.content
