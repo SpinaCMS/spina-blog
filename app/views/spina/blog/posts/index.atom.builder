@@ -8,8 +8,8 @@ atom_feed language: 'en-GB', url: spina.blog_root_url do |feed|
       entry.content(post.content, type: 'html')
 
       entry.author do |author|
-        author.name(post.spina_user.name)
-      end if post.spina_user
+        author.name(post.user.name)
+      end if post.user
     end
   end
 end
