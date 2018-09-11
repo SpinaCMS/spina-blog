@@ -25,7 +25,7 @@ Gem::Specification.new do |s|
   s.add_runtime_dependency 'spina', '>= 0.11.1'
 
   s.add_development_dependency 'capybara', '~> 2.14.3', '>= 2.14.3'
-  s.add_development_dependency 'factory_girl_rails', '~> 4.0'
+  s.add_development_dependency 'factory_bot_rails', '~> 4.0'
   s.add_development_dependency 'pg'
   s.add_development_dependency 'pry-rails', '~> 0'
   s.add_development_dependency 'rails-controller-testing',

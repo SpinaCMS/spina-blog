@@ -1,9 +1,9 @@
 require 'rails_helper'
 
 RSpec.describe Spina::Admin::Blog::CategoriesController, type: :controller do
-  let(:categories) { FactoryGirl.create_list :spina_blog_category, 3 }
-  let(:category) { FactoryGirl.create :spina_blog_category }
-  let(:category_attributes) { FactoryGirl.attributes_for :spina_blog_category }
+  let(:categories) { create_list(:spina_blog_category, 3) }
+  let(:category) { create(:spina_blog_category) }
+  let(:category_attributes) { attributes_for(:spina_blog_category) }
 
   routes { Spina::Engine.routes }
 
@@ -74,7 +74,7 @@ RSpec.describe Spina::Admin::Blog::CategoriesController, type: :controller do
     end
 
     describe 'DELETE #destroy' do
-      let!(:category) { FactoryGirl.create :spina_blog_category }
+      let!(:category) { create(:spina_blog_category) }
 
       subject { delete :destroy, params: { id: category.id } }
 

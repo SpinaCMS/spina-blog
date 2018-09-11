@@ -5,9 +5,9 @@ RSpec.describe Spina::Blog::PostsController, type: :controller do
 
   routes { Spina::Engine.routes }
 
-  let(:draft_past_posts) { FactoryGirl.create_list :spina_blog_post, 3, draft: true, published_at: Date.today - 10 }
-  let(:live_past_posts) { FactoryGirl.create_list :spina_blog_post, 3, draft: false, published_at: Date.today - 10 }
-  let(:live_future_posts) { FactoryGirl.create_list :spina_blog_post, 3, draft: false, published_at: Date.today + 10 }
+  let(:draft_past_posts) { create_list(:spina_blog_post, 3, draft: true, published_at: Date.today - 10) }
+  let(:live_past_posts) { create_list(:spina_blog_post, 3, draft: false, published_at: Date.today - 10) }
+  let(:live_future_posts) { create_list(:spina_blog_post, 3, draft: false, published_at: Date.today + 10) }
 
   describe 'GET #index' do
     subject { get :index }
@@ -34,7 +34,7 @@ RSpec.describe Spina::Blog::PostsController, type: :controller do
   end
 
   describe 'GET #show' do
-    let(:blog_post) { FactoryGirl.create :spina_blog_post }
+    let(:blog_post) { create(:spina_blog_post) }
 
     subject { get :show, params: { id: blog_post.id } }
 
@@ -48,8 +48,8 @@ RSpec.describe Spina::Blog::PostsController, type: :controller do
 
   describe 'GET #archive' do
     context 'with a year' do
-      let(:this_year_posts) { FactoryGirl.create_list :spina_blog_post, 3, draft: false, published_at: Date.today.beginning_of_year }
-      let(:last_year_posts) { FactoryGirl.create_list :spina_blog_post, 3, draft: false, published_at: Date.today.beginning_of_year - 1 }
+      let(:this_year_posts) { create_list(:spina_blog_post, 3, draft: false, published_at: Date.today.beginning_of_year) }
+      let(:last_year_posts) { create_list(:spina_blog_post, 3, draft: false, published_at: Date.today.beginning_of_year - 1) }
 
       before do
         this_year_posts
@@ -65,8 +65,8 @@ RSpec.describe Spina::Blog::PostsController, type: :controller do
     end
 
     context 'with a year and a month' do
-      let(:this_month_posts) { FactoryGirl.create_list :spina_blog_post, 3, draft: false, published_at: Date.today.beginning_of_month }
-      let(:last_month_posts) { FactoryGirl.create_list :spina_blog_post, 3, draft: false, published_at: Date.today.beginning_of_month - 1 }
+      let(:this_month_posts) { create_list(:spina_blog_post, 3, draft: false, published_at: Date.today.beginning_of_month) }
+      let(:last_month_posts) { create_list(:spina_blog_post, 3, draft: false, published_at: Date.today.beginning_of_month - 1) }
 
       before do
         this_month_posts
