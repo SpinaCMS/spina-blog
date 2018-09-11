@@ -4,7 +4,7 @@ RSpec.feature "Posts", type: :feature do
   let!(:account) { ::Spina::Account.create name: 'MySite', theme: 'default' }
 
   describe 'listing posts' do
-    let!(:posts) { FactoryGirl.create_list :spina_blog_post, 3, draft: false, published_at: Date.today - 1 }
+    let!(:posts) { create_list(:spina_blog_post, 3, draft: false, published_at: Date.today - 1) }
 
     it 'shows all the posts' do
       visit '/blog'
@@ -21,7 +21,7 @@ RSpec.feature "Posts", type: :feature do
   end
 
   describe 'listing archived posts' do
-    let!(:last_year_posts) { FactoryGirl.create_list :spina_blog_post, 3, draft: false, published_at: Date.today.beginning_of_year - 1 }
+    let!(:last_year_posts) { create_list(:spina_blog_post, 3, draft: false, published_at: Date.today.beginning_of_year - 1) }
 
     context 'with a year' do
       it 'shows all the posts' do
@@ -41,7 +41,7 @@ RSpec.feature "Posts", type: :feature do
   end
 
   describe 'showing a post' do
-    let!(:post) { FactoryGirl.create :spina_blog_post }
+    let!(:post) { create(:spina_blog_post) }
 
     it 'shows the post' do
       visit "/blog/posts/#{post.slug}"

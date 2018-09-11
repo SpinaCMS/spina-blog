@@ -37,7 +37,7 @@ module Spina
       private
 
       def start_date
-        Time.zone.local params[:year].to_i, (params[:month].to_i || 1)
+        Time.zone.local(params[:year].to_i, (params[:month] || 1).to_i)
       end
 
       def end_date

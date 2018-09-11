@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.feature "Admin Posts", type: :feature do
 
   describe 'listing posts' do
-    let!(:posts) { FactoryGirl.create_list :spina_blog_post, 3, published_at: Date.today + 1 }
+    let!(:posts) { create_list(:spina_blog_post, 3, published_at: Date.today + 1) }
     before { sign_in }
 
     it 'shows all the posts' do

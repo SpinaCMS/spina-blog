@@ -1,11 +1,11 @@
 require 'rails_helper'
 
 RSpec.describe Spina::Admin::Blog::PostsController, type: :controller do
-  let(:posts) { FactoryGirl.create_list :spina_blog_post, 3 }
-  let(:blog_post) { FactoryGirl.create :spina_blog_post }
-  let(:draft_posts) { FactoryGirl.create_list :spina_blog_post, 3, draft: true }
-  let(:live_posts) { FactoryGirl.create_list :spina_blog_post, 3, draft: false }
-  let(:post_attributes) { FactoryGirl.attributes_for :spina_blog_post }
+  let(:posts) { create_list(:spina_blog_post, 3) }
+  let(:blog_post) { create(:spina_blog_post) }
+  let(:draft_posts) { create_list(:spina_blog_post, 3, draft: true) }
+  let(:live_posts) { create_list(:spina_blog_post, 3, draft: false) }
+  let(:post_attributes) { attributes_for(:spina_blog_post) }
 
   routes { Spina::Engine.routes }
 
@@ -15,7 +15,7 @@ RSpec.describe Spina::Admin::Blog::PostsController, type: :controller do
     describe 'GET #index' do
       subject { get :index }
 
-      it { is_expected.to have_http_status :success }
+      it { is_expected.to be_successful }
       it { is_expected.to render_template :index }
       it {
         subject
@@ -26,7 +26,7 @@ RSpec.describe Spina::Admin::Blog::PostsController, type: :controller do
     describe 'GET #live' do
       subject { get :live }
 
-      it { is_expected.to have_http_status :success }
+      it { is_expected.to be_successful }
       it { is_expected.to render_template :index }
       it {
         subject
@@ -41,7 +41,7 @@ RSpec.describe Spina::Admin::Blog::PostsController, type: :controller do
     describe 'GET #draft' do
       subject { get :draft }
 
-      it { is_expected.to have_http_status :success }
+      it { is_expected.to be_successful }
       it { is_expected.to render_template :index }
       it {
         subject
@@ -54,12 +54,12 @@ RSpec.describe Spina::Admin::Blog::PostsController, type: :controller do
     end
 
     describe 'GET #future' do
-      let(:past_posts) { FactoryGirl.create_list :spina_blog_post, 3, published_at: Date.today - 10 }
-      let(:future_posts) { FactoryGirl.create_list :spina_blog_post, 3, published_at: Date.today + 10 }
+      let(:past_posts) { create_list(:spina_blog_post, 3, published_at: Date.today - 10) }
+      let(:future_posts) { create_list(:spina_blog_post, 3, published_at: Date.today + 10) }
 
       subject { get :future }
 
-      it { is_expected.to have_http_status :success }
+      it { is_expected.to be_successful }
       it { is_expected.to render_template :index }
       it {
         subject
@@ -74,7 +74,7 @@ RSpec.describe Spina::Admin::Blog::PostsController, type: :controller do
     describe 'GET #new' do
       subject { get :new }
 
-      it { is_expected.to have_http_status :success }
+      it { is_expected.to be_successful }
       it { is_expected.to render_template :new }
     end
 
@@ -100,7 +100,7 @@ RSpec.describe Spina::Admin::Blog::PostsController, type: :controller do
     describe 'GET #edit' do
       subject { get :edit, params: { id: blog_post.id } }
 
-      it { is_expected.to have_http_status :success }
+      it { is_expected.to be_successful }
       it { is_expected.to render_template :edit }
     end
 
@@ -124,7 +124,7 @@ RSpec.describe Spina::Admin::Blog::PostsController, type: :controller do
     end
 
     describe 'DELETE #destroy' do
-      let!(:blog_post) { FactoryGirl.create :spina_blog_post }
+      let!(:blog_post) { FactoryBot.create :spina_blog_post }
 
       subject { delete :destroy, params: { id: blog_post.id } }
 
