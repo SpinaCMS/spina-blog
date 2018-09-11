@@ -43,7 +43,7 @@ RSpec.describe Spina::Blog::PostsController, type: :controller do
       expect(assigns(:post)).to eq blog_post
     }
     it { is_expected.to render_template :show }
-    it { is_expected.to have_http_status :success }
+    it { is_expected.to be_successful }
   end
 
   describe 'GET #archive' do

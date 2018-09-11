@@ -24,6 +24,6 @@ RSpec.describe Spina::Blog::CategoriesController, type: :controller do
       expect(assigns(:posts)).to match_array live_past_posts
     }
     it { is_expected.to render_template :show }
-    it { is_expected.to have_http_status :success }
+    it { is_expected.to be_successful }
   end
 end

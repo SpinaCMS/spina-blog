@@ -15,7 +15,7 @@ RSpec.describe Spina::Admin::Blog::PostsController, type: :controller do
     describe 'GET #index' do
       subject { get :index }
 
-      it { is_expected.to have_http_status :success }
+      it { is_expected.to be_successful }
       it { is_expected.to render_template :index }
       it {
         subject
@@ -26,7 +26,7 @@ RSpec.describe Spina::Admin::Blog::PostsController, type: :controller do
     describe 'GET #live' do
       subject { get :live }
 
-      it { is_expected.to have_http_status :success }
+      it { is_expected.to be_successful }
       it { is_expected.to render_template :index }
       it {
         subject
@@ -41,7 +41,7 @@ RSpec.describe Spina::Admin::Blog::PostsController, type: :controller do
     describe 'GET #draft' do
       subject { get :draft }
 
-      it { is_expected.to have_http_status :success }
+      it { is_expected.to be_successful }
       it { is_expected.to render_template :index }
       it {
         subject
@@ -59,7 +59,7 @@ RSpec.describe Spina::Admin::Blog::PostsController, type: :controller do
 
       subject { get :future }
 
-      it { is_expected.to have_http_status :success }
+      it { is_expected.to be_successful }
       it { is_expected.to render_template :index }
       it {
         subject
@@ -74,7 +74,7 @@ RSpec.describe Spina::Admin::Blog::PostsController, type: :controller do
     describe 'GET #new' do
       subject { get :new }
 
-      it { is_expected.to have_http_status :success }
+      it { is_expected.to be_successful }
       it { is_expected.to render_template :new }
     end
 
@@ -100,7 +100,7 @@ RSpec.describe Spina::Admin::Blog::PostsController, type: :controller do
     describe 'GET #edit' do
       subject { get :edit, params: { id: blog_post.id } }
 
-      it { is_expected.to have_http_status :success }
+      it { is_expected.to be_successful }
       it { is_expected.to render_template :edit }
     end
 
