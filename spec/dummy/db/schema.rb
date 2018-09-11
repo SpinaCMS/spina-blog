@@ -10,10 +10,31 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180103233223) do
+ActiveRecord::Schema.define(version: 2018_09_11_204435) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "active_storage_attachments", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "record_type", null: false
+    t.bigint "record_id", null: false
+    t.bigint "blob_id", null: false
+    t.datetime "created_at", null: false
+    t.index ["blob_id"], name: "index_active_storage_attachments_on_blob_id"
+    t.index ["record_type", "record_id", "name", "blob_id"], name: "index_active_storage_attachments_uniqueness", unique: true
+  end
+
+  create_table "active_storage_blobs", force: :cascade do |t|
+    t.string "key", null: false
+    t.string "filename", null: false
+    t.string "content_type"
+    t.text "metadata"
+    t.bigint "byte_size", null: false
+    t.string "checksum", null: false
+    t.datetime "created_at", null: false
+    t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
+  end
 
   create_table "friendly_id_slugs", id: :serial, force: :cascade do |t|
     t.string "slug", null: false
@@ -61,9 +82,9 @@ ActiveRecord::Schema.define(version: 20180103233223) do
 
   create_table "spina_blog_categories", id: :serial, force: :cascade do |t|
     t.string "name"
+    t.string "slug"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "slug"
     t.index ["slug"], name: "index_spina_blog_categories_on_slug"
   end
 
@@ -71,24 +92,38 @@ ActiveRecord::Schema.define(version: 20180103233223) do
     t.string "title"
     t.text "excerpt"
     t.text "content"
-    t.integer "photo_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.integer "image_id"
     t.boolean "draft"
     t.datetime "published_at"
     t.string "slug"
-    t.integer "spina_user_id"
+    t.integer "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.integer "category_id"
     t.index ["category_id"], name: "index_spina_blog_posts_on_category_id"
-    t.index ["photo_id"], name: "index_spina_blog_posts_on_photo_id"
+    t.index ["image_id"], name: "index_spina_blog_posts_on_image_id"
     t.index ["slug"], name: "index_spina_blog_posts_on_slug"
-    t.index ["spina_user_id"], name: "index_spina_blog_posts_on_spina_user_id"
+    t.index ["user_id"], name: "index_spina_blog_posts_on_user_id"
   end
 
-  create_table "spina_colors", id: :serial, force: :cascade do |t|
-    t.text "content"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+  create_table "spina_image_collections", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "spina_image_collections_images", id: :serial, force: :cascade do |t|
+    t.integer "image_collection_id"
+    t.integer "image_id"
+    t.integer "position"
+    t.index ["image_collection_id"], name: "index_spina_image_collections_images_on_image_collection_id"
+    t.index ["image_id"], name: "index_spina_image_collections_images_on_image_id"
+  end
+
+  create_table "spina_images", force: :cascade do |t|
+    t.integer "media_folder_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["media_folder_id"], name: "index_spina_images_on_media_folder_id"
   end
 
   create_table "spina_layout_parts", id: :serial, force: :cascade do |t|
@@ -187,6 +222,8 @@ ActiveRecord::Schema.define(version: 20180103233223) do
     t.string "ancestry"
     t.integer "position"
     t.boolean "active", default: true
+    t.integer "resource_id"
+    t.index ["resource_id"], name: "index_spina_pages_on_resource_id"
   end
 
   create_table "spina_photo_collections", id: :serial, force: :cascade do |t|
@@ -206,6 +243,17 @@ ActiveRecord::Schema.define(version: 20180103233223) do
     t.datetime "updated_at", null: false
     t.integer "media_folder_id"
     t.index ["media_folder_id"], name: "index_spina_photos_on_media_folder_id"
+  end
+
+  create_table "spina_resources", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "label"
+    t.string "view_template"
+    t.integer "parent_page_id"
+    t.string "order_by"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["parent_page_id"], name: "index_spina_resources_on_parent_page_id"
   end
 
   create_table "spina_rewrite_rules", id: :serial, force: :cascade do |t|
@@ -275,5 +323,6 @@ ActiveRecord::Schema.define(version: 20180103233223) do
     t.datetime "password_reset_sent_at"
   end
 
-  add_foreign_key "spina_blog_posts", "spina_users"
+  add_foreign_key "spina_blog_posts", "spina_images", column: "image_id"
+  add_foreign_key "spina_blog_posts", "spina_users", column: "user_id"
 end
