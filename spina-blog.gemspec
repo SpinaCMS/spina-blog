@@ -31,5 +31,6 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'rails-controller-testing',
                                '~> 1.0.2', '>= 1.0.2'
   s.add_development_dependency 'rspec-rails', '~> 3.6.0', '>= 3.6.0'
+  s.add_development_dependency 'rubocop-rspec'
   s.add_development_dependency 'simplecov', '~> 0'
 end

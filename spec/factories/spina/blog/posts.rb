@@ -5,7 +5,7 @@ FactoryBot.define do
     association :category, factory: :spina_blog_category
 
     factory :invalid_spina_blog_post do
-      title nil
+      title { nil }
     end
   end
 end
