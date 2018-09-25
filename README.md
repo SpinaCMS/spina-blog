@@ -18,6 +18,11 @@ And then execute:
 $ bundle
 ```
 
+And install:
+```bash
+$ rails g spina_blog:install
+```
+
 Or install it yourself as:
 ```bash
 $ gem install spina-blog
