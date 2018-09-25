@@ -15,5 +15,23 @@ module Spina::Blog
       it { is_expected.to_not be_valid }
       it { expect{post.save}.to_not change(Spina::Blog::Post, :count) }
     end
+
+    describe '.featured' do
+      let!(:post) { create(:spina_blog_post, featured: true) }
+      let!(:unfeatured) { create(:spina_blog_post) }
+
+      it 'returns 1 result' do
+        expect(Spina::Blog::Post.featured).to match_array [post]
+      end
+    end
+
+    describe '.unfeatured' do
+      let!(:post) { create(:spina_blog_post, featured: true) }
+      let!(:unfeatured) { create(:spina_blog_post) }
+
+      it 'returns 1 result' do
+        expect(Spina::Blog::Post.unfeatured).to match_array [unfeatured]
+      end
+    end
   end
 end

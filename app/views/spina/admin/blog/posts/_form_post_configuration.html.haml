@@ -18,6 +18,13 @@
 
     .horizontal-form-group
       .horizontal-form-label
+        = Spina::Blog::Post.human_attribute_name :featured
+        %small= Spina::Blog::Post.human_attribute_name :featured_description
+      .horizontal-form-content
+        = f.check_box :featured, data: {switch: true}
+
+    .horizontal-form-group
+      .horizontal-form-label
         = Spina::Blog::Post.human_attribute_name :slug
         %small= Spina::Blog::Post.human_attribute_name :slug_description
       .horizontal-form-content

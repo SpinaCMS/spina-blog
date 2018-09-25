@@ -24,6 +24,8 @@ module Spina
       scope :future, -> { where('published_at >= ?', Time.zone.now) }
       scope :draft, -> { where(draft: true) }
       scope :live, -> { where(draft: false) }
+      scope :featured, -> { where(featured: true) }
+      scope :unfeatured, -> { where(featured: false) }
 
       private
 
