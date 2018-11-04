@@ -39,4 +39,4 @@
           = f.text_field :name, placeholder: Spina::Blog::Category.human_attribute_name(:name_placeholder)
 
   - unless @category.new_record?
-    .pull-right= link_to t('spina.permanently_delete'), spina.admin_blog_category_path(@category), method: :delete, data: {confirm: t('spina.blog.category.delete_confirmation', subject: @category.name)}, class: 'button button-link button-danger'
+    .pull-right= link_to t('spina.permanently_delete'), spina.admin_blog_category_path(@category.id), method: :delete, data: {confirm: t('spina.blog.category.delete_confirmation', subject: @category.name)}, class: 'button button-link button-danger'
