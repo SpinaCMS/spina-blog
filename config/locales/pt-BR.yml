@@ -1,0 +1,41 @@
+pt-BR:
+  spina:
+    view: Visão
+
+    blog:
+      title: Blog
+
+      posts:
+        title: Postagens
+        new: Nova Postagem
+        save: Salvar postagem
+        saving: Salvando...
+        saved: Postagem salva
+        post_content: Conteúdo
+        post_configuration: Configurações
+        concept: Rascunho
+
+      categories:
+        title: Categorias
+        new: Nova Categoria
+        name: Categorias
+        save: Salvar categoria
+        saving: Salvando...
+        saved: Categoria salva
+
+  activerecord:
+    attributes:
+      spina/blog/post:
+        title: Título da Postagem
+        title_placeholder: Título da Postagem
+        content: Conteúdo da postagem
+        draft: Rascunho
+        draft_description: Ótimo quando sua postagem não está finalizada
+        published_at: Data/hora da publicação
+        slug: Permalink
+        slug_description: URL Permalink URL para esta postagem
+        excerpt: Resumo
+        spina_user: Autor
+      spina/blog/category:
+        name: Nome da categoria
+        name_placeholder: Nome da categoria
