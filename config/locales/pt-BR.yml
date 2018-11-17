@@ -33,7 +33,7 @@ pt-BR:
         draft_description: Ótimo quando sua postagem não está finalizada
         published_at: Data/hora da publicação
         slug: Permalink
-        slug_description: URL Permalink URL para esta postagem
+        slug_description: URL Permalink para esta postagem
         excerpt: Resumo
         spina_user: Autor
       spina/blog/category:
