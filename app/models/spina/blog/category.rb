@@ -9,7 +9,7 @@ module Spina
       friendly_id :name, use: :slugged
 
       has_many :posts, class_name: 'Spina::Blog::Post', inverse_of: :category
-      validates :name, presence: true
+      validates :name, presence: true, uniqueness: { case_sensitive: false }
 
       def to_s
         name
