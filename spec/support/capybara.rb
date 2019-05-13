@@ -2,7 +2,7 @@
 
 Capybara.server = :puma, { Silent: true }
 
-args = %w[no-sandbox disable-gpu window-size=1280,1024]
+args = %w[disable-dev-shm-usage no-sandbox disable-gpu window-size=1280,1024]
 args << "lang=#{I18n.locale}"
 args << 'headless' unless ENV['DEBUG']
 capabilities = Selenium::WebDriver::Remote::Capabilities.chrome(
