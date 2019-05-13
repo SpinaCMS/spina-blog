@@ -6,9 +6,8 @@ language: ruby
 rvm:
   - 2.4.2
 addons:
-  apt:
-    - postgresql
-    - google-chrome-stable
+  postgresql: '9.6'
+  chrome: stable
 before_script:
   - ln -s /usr/lib/chromium-browser/chromedriver ~/bin/chromedriver
   - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
