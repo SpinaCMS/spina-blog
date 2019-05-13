@@ -8,7 +8,7 @@ module Spina
 
       friendly_id :title, use: :slugged
 
-      belongs_to :image, optional: true,  class_name: 'Spina::Image'
+      belongs_to :image, optional: true, class_name: 'Spina::Image'
 
       belongs_to :user
       belongs_to :category, inverse_of: :posts

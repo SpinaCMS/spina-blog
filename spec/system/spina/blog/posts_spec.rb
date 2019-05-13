@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
-RSpec.feature "Posts", type: :feature do
+RSpec.feature 'Posts', type: :system do
   let!(:account) { ::Spina::Account.create name: 'MySite', theme: 'default' }
 
   describe 'listing posts' do
@@ -12,7 +14,6 @@ RSpec.feature "Posts", type: :feature do
     end
 
     context 'using the atom format' do
-
       it 'shows the atom feed' do
         visit '/blog.atom'
         expect(page).to have_xpath '//entry', count: 3

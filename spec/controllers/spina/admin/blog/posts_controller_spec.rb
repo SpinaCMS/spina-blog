@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe Spina::Admin::Blog::PostsController, type: :controller do
@@ -54,8 +56,12 @@ RSpec.describe Spina::Admin::Blog::PostsController, type: :controller do
     end
 
     describe 'GET #future' do
-      let(:past_posts) { create_list(:spina_blog_post, 3, published_at: Date.today - 10) }
-      let(:future_posts) { create_list(:spina_blog_post, 3, published_at: Date.today + 10) }
+      let(:past_posts) do
+        create_list(:spina_blog_post, 3, published_at: Time.zone.today - 10)
+      end
+      let(:future_posts) do
+        create_list(:spina_blog_post, 3, published_at: Time.zone.today + 10)
+      end
 
       subject { get :future }
 
@@ -86,13 +92,13 @@ RSpec.describe Spina::Admin::Blog::PostsController, type: :controller do
         subject
         expect(flash[:notice]).to eq 'Post saved'
       }
-      it { expect{subject}.to change(Spina::Blog::Post, :count).by(1) }
+      it { expect { subject }.to change(Spina::Blog::Post, :count).by(1) }
 
       context 'with invalid attributes' do
         subject { post :create, params: { post: { content: 'foo' } } }
 
         it { is_expected.to_not have_http_status :redirect }
-        it { expect{subject}.to_not change(Spina::Blog::Post, :count) }
+        it { expect { subject }.to_not change(Spina::Blog::Post, :count) }
         it { is_expected.to render_template :new }
       end
     end
@@ -105,21 +111,25 @@ RSpec.describe Spina::Admin::Blog::PostsController, type: :controller do
     end
 
     describe 'PATCH #update' do
-      subject { patch :update, params: { id: blog_post.id, post: post_attributes } }
+      subject do
+        patch :update, params: { id: blog_post.id, post: post_attributes }
+      end
 
       it { is_expected.to have_http_status :redirect }
-      it {
+      it do
         subject
         expect(flash[:notice]).to eq 'Post saved'
-      }
-      it { expect{subject}.to change{blog_post.reload.title} }
+      end
+      it { expect { subject }.to(change { blog_post.reload.title }) }
 
       context 'with invalid attributes' do
-        subject { patch :update, params: { id: blog_post.id, post: { title: '' } } }
+        subject do
+          patch :update, params: { id: blog_post.id, post: { title: '' } }
+        end
 
         it { is_expected.to_not have_http_status :redirect }
         it { is_expected.to render_template :edit }
-        it { expect{subject}.to_not change{blog_post.reload.title} }
+        it { expect { subject }.not_to(change { blog_post.reload.title }) }
       end
     end
 
@@ -128,7 +138,7 @@ RSpec.describe Spina::Admin::Blog::PostsController, type: :controller do
 
       subject { delete :destroy, params: { id: blog_post.id } }
 
-      it { expect{subject}.to change(Spina::Blog::Post, :count).by(-1) }
+      it { expect { subject }.to change(Spina::Blog::Post, :count).by(-1) }
     end
   end
 

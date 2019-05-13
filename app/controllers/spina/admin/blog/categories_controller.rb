@@ -40,7 +40,7 @@ module Spina
         end
 
         def update
-          if @category.update_attributes(category_params)
+          if @category.update(category_params)
             add_breadcrumb @category.name
             redirect_to spina.edit_admin_blog_category_url(
               @category.id, params: { locale: @locale }

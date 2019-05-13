@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module ControllerHelpers
   def sign_in
     @account = Spina::Account.create name: 'My Website', preferences: { theme: 'default' }
@@ -18,6 +20,6 @@ module FeatureHelpers
 end
 
 RSpec.configure do |config|
-  config.include ControllerHelpers, :type => :controller
-  config.include FeatureHelpers, :type => :feature
+  config.include ControllerHelpers, type: :controller
+  config.include FeatureHelpers, type: :system
 end

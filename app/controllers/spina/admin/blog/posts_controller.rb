@@ -56,7 +56,7 @@ module Spina
         end
 
         def update
-          if @post.update_attributes(post_params)
+          if @post.update(post_params)
             add_breadcrumb @post.title
             redirect_to spina.edit_admin_blog_post_url(
               @post.id, params: { locale: @locale }
@@ -83,7 +83,7 @@ module Spina
         end
 
         def set_tabs
-          @tabs = %w[post_content post_configuration]
+          @tabs = %w[post_content post_configuration post_seo]
         end
 
         def set_locale
@@ -94,7 +94,7 @@ module Spina
         def post_params
           params.require(:post).permit(
             :title, :slug, :excerpt, :content, :image_id, :draft, :published_at,
-            :user_id, :category_id, :featured
+            :user_id, :category_id, :featured, :seo_title, :description
           )
         end
       end

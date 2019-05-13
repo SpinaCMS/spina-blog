@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe Spina::Admin::Blog::CategoriesController, type: :controller do
@@ -7,7 +9,7 @@ RSpec.describe Spina::Admin::Blog::CategoriesController, type: :controller do
 
   routes { Spina::Engine.routes }
 
-  context 'signed in as an admin' do
+  context 'when signed in as an admin' do
     before { sign_in }
 
     describe 'GET #index' do
@@ -36,13 +38,13 @@ RSpec.describe Spina::Admin::Blog::CategoriesController, type: :controller do
         subject
         expect(flash[:notice]).to eq 'Category saved'
       }
-      it { expect{subject}.to change(Spina::Blog::Category, :count).by(1) }
+      it { expect { subject }.to change(Spina::Blog::Category, :count).by(1) }
 
       context 'with invalid attributes' do
         subject { post :create, params: { category: { name: '' } } }
 
         it { is_expected.to_not have_http_status :redirect }
-        it { expect{subject}.to_not change(Spina::Blog::Category, :count) }
+        it { expect { subject }.to_not change(Spina::Blog::Category, :count) }
         it { is_expected.to render_template :new }
       end
     end
@@ -55,21 +57,26 @@ RSpec.describe Spina::Admin::Blog::CategoriesController, type: :controller do
     end
 
     describe 'PATCH #update' do
-      subject { patch :update, params: { id: category.id, category: category_attributes } }
+      subject do
+        patch :update,
+              params: { id: category.id, category: category_attributes }
+      end
 
       it { is_expected.to have_http_status :redirect }
       it {
         subject
         expect(flash[:notice]).to eq 'Category saved'
       }
-      it { expect{subject}.to change{category.reload.name} }
+      it { expect { subject }.to(change { category.reload.name }) }
 
       context 'with invalid attributes' do
-        subject { patch :update, params: { id: category.id, category: { name: '' } } }
+        subject do
+          patch :update, params: { id: category.id, category: { name: '' } }
+        end
 
         it { is_expected.to_not have_http_status :redirect }
         it { is_expected.to render_template :edit }
-        it { expect{subject}.to_not change{category.reload.name} }
+        it { expect { subject }.not_to(change { category.reload.name }) }
       end
     end
 
@@ -78,7 +85,7 @@ RSpec.describe Spina::Admin::Blog::CategoriesController, type: :controller do
 
       subject { delete :destroy, params: { id: category.id } }
 
-      it { expect{subject}.to change(Spina::Blog::Category, :count).by(-1) }
+      it { expect { subject }.to change(Spina::Blog::Category, :count).by(-1) }
     end
   end
 

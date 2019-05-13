@@ -1,8 +1,10 @@
+# frozen_string_literal: true
+
 module SpinaBlog
   class InstallGenerator < Rails::Generators::Base
-
     def copy_migrations
       return if Rails.env.production?
+
       rake 'spina_blog:install:migrations'
     end
 
@@ -18,6 +20,5 @@ module SpinaBlog
       puts "    The admin backend is located at http://localhost:3000/#{Spina.config.backend_path}."
       puts
     end
-
   end
 end
