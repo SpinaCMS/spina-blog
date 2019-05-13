@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 source 'https://rubygems.org'
 
 # Declare your gem's dependencies in spina-blog.gemspec.
@@ -12,5 +14,5 @@ gemspec
 
 # To use a debugger
 # gem 'byebug', group: [:development, :test]
-gem 'pry-rails', group: [:development, :test]
+gem 'pry-rails', group: %i[development test]
 gem 'spina', git: 'https://github.com/SpinaCMS/Spina'

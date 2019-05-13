@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 Spina.configure do |config|
   # Set locales
   config.locales = [:en]

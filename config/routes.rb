@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 Spina::Engine.routes.draw do
   namespace :blog do
     root to: 'posts#index'

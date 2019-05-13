@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe Spina::Blog::PostsController, type: :controller do
@@ -5,9 +7,18 @@ RSpec.describe Spina::Blog::PostsController, type: :controller do
 
   routes { Spina::Engine.routes }
 
-  let(:draft_past_posts) { create_list(:spina_blog_post, 3, draft: true, published_at: Date.today - 10) }
-  let(:live_past_posts) { create_list(:spina_blog_post, 3, draft: false, published_at: Date.today - 10) }
-  let(:live_future_posts) { create_list(:spina_blog_post, 3, draft: false, published_at: Date.today + 10) }
+  let(:draft_past_posts) do
+    create_list :spina_blog_post, 3, draft: true,
+                                     published_at: Time.zone.today - 10
+  end
+  let(:live_past_posts) do
+    create_list :spina_blog_post, 3, draft: false,
+                                     published_at: Time.zone.today - 10
+  end
+  let(:live_future_posts) do
+    create_list :spina_blog_post, 3, draft: false,
+                                     published_at: Time.zone.today + 10
+  end
 
   describe 'GET #index' do
     subject { get :index }
@@ -18,19 +29,10 @@ RSpec.describe Spina::Blog::PostsController, type: :controller do
       live_future_posts
     end
 
-    it {
+    it do
       subject
       expect(assigns(:posts)).to match_array live_past_posts
-    }
-
-    # context 'when signed in' do
-    #   before { sign_in }
-    #
-    #   it {
-    #     subject
-    #     expect(assigns(:posts)).to match_array(draft_past_posts + live_past_posts)
-    #   }
-    # end
+    end
   end
 
   describe 'GET #show' do
@@ -48,15 +50,21 @@ RSpec.describe Spina::Blog::PostsController, type: :controller do
 
   describe 'GET #archive' do
     context 'with a year' do
-      let(:this_year_posts) { create_list(:spina_blog_post, 3, draft: false, published_at: Date.today.beginning_of_year) }
-      let(:last_year_posts) { create_list(:spina_blog_post, 3, draft: false, published_at: Date.today.beginning_of_year - 1) }
-
+      let(:this_year_posts) do
+        create_list :spina_blog_post, 3,
+                    draft: false, published_at: Time.zone.today.beginning_of_year
+      end
+      let(:last_year_posts) do
+        create_list :spina_blog_post, 3,
+                    draft: false,
+                    published_at: Time.zone.today.beginning_of_year - 1
+      end
       before do
         this_year_posts
         last_year_posts
       end
 
-      subject { get :archive, params: { year: Date.today.year } }
+      subject { get :archive, params: { year: Time.zone.today.year } }
 
       it {
         subject
@@ -65,15 +73,15 @@ RSpec.describe Spina::Blog::PostsController, type: :controller do
     end
 
     context 'with a year and a month' do
-      let(:this_month_posts) { create_list(:spina_blog_post, 3, draft: false, published_at: Date.today.beginning_of_month) }
-      let(:last_month_posts) { create_list(:spina_blog_post, 3, draft: false, published_at: Date.today.beginning_of_month - 1) }
+      let(:this_month_posts) { create_list(:spina_blog_post, 3, draft: false, published_at: Time.zone.today.beginning_of_month) }
+      let(:last_month_posts) { create_list(:spina_blog_post, 3, draft: false, published_at: Time.zone.today.beginning_of_month - 1) }
 
       before do
         this_month_posts
         last_month_posts
       end
 
-      subject { get :archive, params: { year: Date.today.year, month: Date.today.month } }
+      subject { get :archive, params: { year: Time.zone.today.year, month: Time.zone.today.month } }
 
       it {
         subject

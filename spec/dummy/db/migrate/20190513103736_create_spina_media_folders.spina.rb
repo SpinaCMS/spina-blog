@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # This migration comes from spina (originally 8)
 class CreateSpinaMediaFolders < ActiveRecord::Migration[5.1]
   def change
@@ -5,7 +7,5 @@ class CreateSpinaMediaFolders < ActiveRecord::Migration[5.1]
       t.string :name
       t.timestamps
     end
-    add_column :spina_photos, :media_folder_id, :integer
-    add_index :spina_photos, :media_folder_id
   end
 end

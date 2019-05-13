@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 module Spina::Blog
@@ -7,13 +9,13 @@ module Spina::Blog
     subject { post }
 
     it { is_expected.to be_valid }
-    it { expect{post.save}.to change(Spina::Blog::Post, :count).by(1) }
+    it { expect { post.save }.to change(Spina::Blog::Post, :count).by(1) }
 
     context 'with invalid attributes' do
       let(:post) { build(:invalid_spina_blog_post) }
 
       it { is_expected.to_not be_valid }
-      it { expect{post.save}.to_not change(Spina::Blog::Post, :count) }
+      it { expect { post.save }.to_not change(Spina::Blog::Post, :count) }
     end
 
     describe '.featured' do
