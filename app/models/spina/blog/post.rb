@@ -18,7 +18,7 @@ module Spina
       before_save :set_published_at
 
       # Create a 301 redirect if the slug changed
-      after_save :rewrite_rule, if: -> { saved_change_to_slug? }, on: :update
+      after_update :rewrite_rule, if: -> { saved_change_to_slug? }
 
       scope :available, -> { where('published_at <= ?', Time.zone.now) }
       scope :future, -> { where('published_at >= ?', Time.zone.now) }
