@@ -4,8 +4,10 @@ module Spina
   module Blog
     # Spina::Blog::PostsController
     class PostsController < ::Spina::ApplicationController
-      before_action :page
+      include ::Spina::Frontend
+
       before_action :find_posts, only: [:index]
+      before_action :current_spina_user_can_view_page?
 
       decorates_assigned :posts, :post
 
@@ -49,7 +51,7 @@ module Spina
       end
 
       def page
-        @page = Spina::Page.find_or_create_by name: 'blog' do |page|
+        @page ||= Spina::Page.find_or_create_by name: 'blog' do |page|
           page.title = 'Blog'
           page.link_url = '/blog'
           page.deletable = false
@@ -64,6 +66,10 @@ module Spina
       def try_redirect
         rule = RewriteRule.find_by!(old_path: "/blog/posts/#{params[:id]}")
         redirect_to rule.new_path, status: :moved_permanently
+      end
+
+      def current_spina_user_can_view_page?
+        raise ActiveRecord::RecordNotFound unless current_spina_user.present? || page.live?
       end
     end
   end
