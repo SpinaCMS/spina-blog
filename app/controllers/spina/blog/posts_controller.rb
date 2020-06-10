@@ -5,12 +5,12 @@ module Spina
     # Spina::Blog::PostsController
     class PostsController < ::Spina::ApplicationController
       before_action :page
-      before_action :posts, only: [:index]
+      before_action :find_posts, only: [:index]
+
+      decorates_assigned :posts, :post
 
       def index
-        # if current_spina_user and current_spina_user.admin?
-        #   @posts = @posts.unscope(where: :draft)
-        # end
+        @posts = @posts.unscope(where: :draft) if current_spina_user&.admin?
 
         respond_to do |format|
           format.atom
@@ -56,7 +56,7 @@ module Spina
         end
       end
 
-      def posts
+      def find_posts
         @posts = Spina::Blog::Post.available.live.order(published_at: :desc)
                                   .page(params[:page])
       end

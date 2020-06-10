@@ -3,6 +3,7 @@
 require 'friendly_id'
 require 'draper'
 require 'spina'
+require 'nokogiri'
 
 module Spina
   # Spina::Blog
