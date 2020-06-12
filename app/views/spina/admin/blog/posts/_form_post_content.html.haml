@@ -1,36 +1,46 @@
-#post_content.tab-content.active.well
-  .horizontal-form
-    .horizontal-form-group
-      .horizontal-form-label
+.tab-content.active#post_content
+  .page-form
+    .page-form-group
+      .page-form-label
         = Spina::Blog::Post.human_attribute_name :title
-      .horizontal-form-content
+      .page-form-content
         = f.text_field :title, placeholder: Spina::Blog::Post.human_attribute_name(:title_placeholder)
 
-    .horizontal-form-group
-      .horizontal-form-label
+    .page-form-group
+      .page-form-label
         = Spina::Blog::Post.human_attribute_name :excerpt
-      .horizontal-form-content
-        = render 'spina/admin/shared/rich_text_field', f: f, field: :excerpt
+      .page-form-content
+        .page-form-rich-text
+          = f.hidden_field :excerpt, id: 'excerpt_input'
+          %trix-editor.text-input.trix-content{ input: 'excerpt_input' }
 
 
-    .horizontal-form-group
-      .horizontal-form-label
+    .page-form-group
+      .page-form-label
         = Spina::Blog::Post.human_attribute_name :content
-      .horizontal-form-content
-        = render 'spina/admin/shared/rich_text_field', f: f, field: :content
+      .page-form-content
+        .page-form-rich-text
+          = f.hidden_field :content, id: 'content_input'
+          %trix-editor.text-input.trix-content{ input: 'content_input' }
 
-    .horizontal-form-group
-      .horizontal-form-label
+    .page-form-group
+      .page-form-label
         = Spina::Blog::Post.human_attribute_name :image_id
-      .horizontal-form-content
-        = link_to admin_media_picker_path(selected_ids: [f.object.image_id], hidden_field_id: 'media_picker_image_id'), remote: true, class: 'media_picker clearfix' do
-          .placeholder
-            %span.button.button-small.button-round
-              %i.icon.icon-dots
-              =t 'spina.images.choose_image'
+      .page-form-control{ data: { controller: 'image-form' } }
+        .page-form-media-picker
+          %div{ style: 'width: 100%' }
+            = link_to admin_media_picker_path(selected_ids: [f.object.image_id],
+              input: "media_picker_#{f.object.object_id}_image_id", mode: 'single'), remote: true, class: 'image',
+              data: { target: 'image-form.image' } do
+              .page-form-media-picker-placeholder= t 'spina.images.choose_image'
+              %div{ id: "media_picker_#{f.object.object_id}_image_id" }
+                = hidden_field_tag :signed_blob_id, '', data: { target: 'image-form.signedBlobId' }
+                = hidden_field_tag :filename, '', data: { target: 'image-form.filename' }
+                = f.hidden_field :image_id, data: { target: 'image-form.imageId' }
+              %div
+                - if f.object.image.present?
+                  = image_tag main_app.url_for(f.object.image.variant(resize: '400x300^', crop: '400x300+0+0')), width: 200, height: 150
 
-          - if f.object&.image&.file&.attached?
-            .image
-              = image_tag variant(f.object.image.file, resize: "300x300^", crop: "300x300+0+0")
-
-          = f.hidden_field :image_id, data: { hidden_field_id: "media_picker_image_id" }
+          = button_tag type: :default, class: 'button button-small button-white',
+            data: { action: 'image-form#remove' } do
+            %i.icon.icon-cross{ style: 'margin: 0; font-size: 10px' }
