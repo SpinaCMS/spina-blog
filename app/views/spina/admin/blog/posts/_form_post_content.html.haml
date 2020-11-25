@@ -10,27 +10,35 @@
       .horizontal-form-label
         = Spina::Blog::Post.human_attribute_name :excerpt
       .horizontal-form-content
-        = render 'spina/admin/shared/rich_text_field', f: f, field: :excerpt
-
+        = f.text_area :excerpt, rows: 2, style: 'min-height: auto'
 
     .horizontal-form-group
       .horizontal-form-label
         = Spina::Blog::Post.human_attribute_name :content
+        %small= t('spina.blog.posts.body_image_size', size: wxh(Spina::Blog.config.body_image_size))
       .horizontal-form-content
-        = render 'spina/admin/shared/rich_text_field', f: f, field: :content
+        = render 'spina/admin/shared/rich_text_field', f: f, field: :content,
+                 html_options: { style: 'height: 400px; overflow-y: auto; resize: vertical' }
 
+    - size = Spina::Blog.config.hero_image_size
     .horizontal-form-group
       .horizontal-form-label
         = Spina::Blog::Post.human_attribute_name :image_id
-      .horizontal-form-content
-        = link_to admin_media_picker_path(selected_ids: [f.object.image_id], hidden_field_id: 'media_picker_image_id'), remote: true, class: 'media_picker clearfix' do
+        %small= t('spina.blog.posts.hero_image_size', size: wxh(size))
+      .horizontal-form-content{data: {controller: 'image-form'}}
+        = link_to admin_media_picker_path(selected_ids: [f.object.image_id],
+                                          input: "media_picker_#{f.object.object_id}",
+                                          hidden_field_id: 'media_picker_image_id',
+                                          mode: 'single'),
+                  remote: true, class: 'media_picker clearfix', data: { target: 'image-form.media_picker' } do
           .placeholder
             %span.button.button-small.button-round
-              %i.icon.icon-dots
               =t 'spina.images.choose_image'
-
-          - if f.object&.image&.file&.attached?
-            .image
-              = image_tag variant(f.object.image.file, resize: "300x300^", crop: "300x300+0+0")
-
-          = f.hidden_field :image_id, data: { hidden_field_id: "media_picker_image_id" }
+          %div{id: "media_picker_#{f.object.object_id}"}
+            = f.hidden_field :image_id, data: { hidden_field_id: "media_picker_image_id", target: 'image-form.imageId' }
+            -# Dummy fields to satisfy the controller
+            = hidden_field_tag :signed_blob_id, nil, data: {target: 'image-form.signedBlobId'}
+            = hidden_field_tag :filename, nil, data: {target: 'image-form.filename'}
+          %div
+            - if f.object&.image&.file&.attached?
+              = image_tag variant(f.object.image.file, resize: wxh(width: size[:width] / 2, height: size[:height] / 2))

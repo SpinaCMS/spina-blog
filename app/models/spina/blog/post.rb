@@ -10,8 +10,8 @@ module Spina
 
       belongs_to :image, optional: true, class_name: 'Spina::Image'
 
-      belongs_to :user
-      belongs_to :category, inverse_of: :posts
+      belongs_to :user, optional: true
+      belongs_to :category, inverse_of: :posts, optional: true
 
       validates :title, :content, presence: true
 
@@ -26,6 +26,8 @@ module Spina
       scope :live, -> { where(draft: false) }
       scope :featured, -> { where(featured: true) }
       scope :unfeatured, -> { where(featured: false) }
+      scope :corp, -> { where(corp: true) }
+      scope :back_office, -> { where(back_office: true) }
 
       private
 

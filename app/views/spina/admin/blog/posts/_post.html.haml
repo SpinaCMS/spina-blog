@@ -10,10 +10,17 @@
           Will be published on #{post.decorate.published_date}
 
   %td.nowrap.text-right
-    = link_to spina.blog_post_path(post), class: 'button button-small button-link dd-nodrag', target: '_blank' do
-      = icon 'eye'
-      = t('spina.view')
+    - fe_path = instance_exec(post, &Spina::Blog.config.post_path)
+    - if fe_path.present?
+      = link_to fe_path, class: 'button button-small button-link dd-nodrag', target: '_blank' do
+        = icon_spina 'eye'
+        = t(post.draft? ? 'spina.blog.posts.preview' : 'spina.view')
 
     = link_to spina.edit_admin_blog_post_path(post.id), class: 'button button-link' do
-      = icon 'pencil-outline'
-      = t('spina.blog.posts.edit')
+      = icon_spina 'edit'
+      = t('spina.edit')
+
+    = link_to spina.admin_blog_post_path(post.id), method: :delete, class: 'button button-link button-danger',
+        data: { confirm: t('spina.blog.posts.delete_confirmation', subject: post.title) } do
+      = icon_spina 'trash'
+      = t('spina.delete')

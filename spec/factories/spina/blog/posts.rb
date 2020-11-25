@@ -12,5 +12,11 @@ FactoryBot.define do
     factory :invalid_spina_blog_post do
       title { nil }
     end
+
+    trait :back_office do
+      back_office { true }
+    end
+
+    factory :back_office_post, traits: %i[back_office]
   end
 end

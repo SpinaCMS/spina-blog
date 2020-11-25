@@ -40,10 +40,7 @@ Style/Documentation:
   Exclude:
     - 'spec/**/*'
     - 'test/**/*'
-    - 'db/migrate/1_create_spina_blog_posts.rb'
-    - 'db/migrate/2_create_spina_blog_friendly_id_slugs.rb'
-    - 'db/migrate/3_create_spina_blog_categories.rb'
-    - 'db/migrate/4_add_category_id_to_spina_blog_posts.rb'
+    - 'db/migrate/**/*'
     - 'lib/generators/spina_blog/install_generator.rb'
 
 # Offense count: 2
