@@ -3,6 +3,6 @@
 module Spina
   # Spina::Blog
   module Blog
-    VERSION = '0.3.0'
+    VERSION = '0.3.0.paragon1'
   end
 end

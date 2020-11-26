@@ -94,7 +94,7 @@ module Spina
         def post_params
           params.require(:post).permit(
             :title, :slug, :excerpt, :content, :image_id, :draft, :published_at,
-            :user_id, :category_id, :featured, :seo_title, :description
+            :user_id, :category_id, :featured, :seo_title, :description, :corp, :back_office
           )
         end
       end

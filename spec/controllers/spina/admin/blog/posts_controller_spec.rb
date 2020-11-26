@@ -85,14 +85,16 @@ RSpec.describe Spina::Admin::Blog::PostsController, type: :controller do
     end
 
     describe 'POST #create' do
-      subject { post :create, params: { post: post_attributes } }
+      let(:attrs) { attributes_for(:back_office_post) }
 
-      it { is_expected.to have_http_status :redirect }
+      subject { post :create, params: { post: attrs } }
+
       it {
-        subject
+        is_expected.to have_http_status :redirect
         expect(flash[:notice]).to eq 'Post saved'
+        expect(Spina::Blog::Post.count).to eq(1)
+        expect(Spina::Blog::Post.last).to have_attributes(attrs)
       }
-      it { expect { subject }.to change(Spina::Blog::Post, :count).by(1) }
 
       context 'with invalid attributes' do
         subject { post :create, params: { post: { content: 'foo' } } }

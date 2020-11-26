@@ -6,14 +6,23 @@ en:
       title: Blog
 
       posts:
-        title: Posts
+        title: Blog Posts
+        all_posts: All Posts
+        live_posts: Live Posts
+        draft_posts: Draft Posts
+        scheduled_posts: Scheduled Posts
+        preview: Preview
         new: New Post
+        body_image_size: "Recommended image size: %{size}"
+        hero_image_size: "Recommended size: %{size}"
         save: Save post
         saving: Saving...
         saved: Post saved
-        post_content: Content
+        post_content: Body
         post_configuration: Settings
+        post_seo: Post SEO
         concept: Draft
+        delete_confirmation: Are you sure you want to permanently delete the blog post "%{subject}"?
 
       categories:
         title: Categories
@@ -22,19 +31,25 @@ en:
         save: Save category
         saving: Saving...
         saved: Category saved
+        delete_confirmation: Are you sure you want to permanently delete the blog category "%{subject}"?
 
   activerecord:
     attributes:
       spina/blog/post:
-        title: Post title
+        title: Heading
         title_placeholder: Post title
-        content: Post content
+        content: Post body
+        image_id: Hero image
+        corp: E-Commerce
+        corp_description: Available in the corp site
+        back_office: Back Office
+        back_office_description: Available in the Back Office
         draft: Draft
         draft_description: Great for when your post is not quite finished
         published_at: Publishing date/time
         slug: Permalink
         slug_description: Permalink URL for this post
-        excerpt: Excerpt
+        excerpt: Sub-Heading
         spina_user: Author
       spina/blog/category:
         name: Category name

@@ -1,12 +1,12 @@
 - if @post.errors.any?
   - content_for :notifications do
     .notification.notification-danger.animated.fadeInRight
-      = icon('exclamation')
+      = icon_spina('exclamation')
       .notification-message
         =t 'spina.notifications.alert'
         %small= @post.errors.full_messages.join('<br />').html_safe
       = link_to '#', data: {close_notification: true} do
-        = icon('cross')
+        = icon_spina('times')
 
 %header#header
   .breadcrumbs= render_breadcrumbs separator: '<div class="divider"></div>'
@@ -14,7 +14,7 @@
     - if Spina.config.locales.size > 1
       %div{style: 'display: inline-block; margin-left: 12px; top: -4px', data: {dropdown: true}}
         = link_to '#', class: 'button button-link button-round button-small', data: {trigger: 'dropdown', target: '#locales'} do
-          = icon('comment')
+          = icon_spina('comment')
           = @locale.upcase
 
         %ul#locales
@@ -24,7 +24,7 @@
 
   #header_actions
     %button.button.button-primary{type: 'submit', style: 'margin-right: 0', data: {disable_with: t('spina.blog.posts.saving')}}
-      = icon('check')
+      = icon_spina('check')
       =t 'spina.blog.posts.save'
 
   %nav#secondary.tabs
@@ -40,4 +40,7 @@
     = render "spina/admin/blog/posts/form_#{tab}", f: f
 
   - unless @post.new_record?
-    .pull-right= link_to t('spina.permanently_delete'), spina.admin_blog_post_path(@post.id), method: :delete, data: {confirm: t('spina.post.delete_confirmation', subject: @post.title)}, class: 'button button-link button-danger'
+    .pull-right
+      = link_to t('spina.permanently_delete'), spina.admin_blog_post_path(@post.id), method: :delete,
+          data: { confirm: t('spina.blog.posts.delete_confirmation', subject: @post.title) },
+          class: 'button button-link button-danger'

@@ -35,5 +35,23 @@ module Spina::Blog
         expect(Spina::Blog::Post.unfeatured).to match_array [unfeatured]
       end
     end
+
+    describe '.corp' do
+      let!(:post) { create(:spina_blog_post, corp: true) }
+      let!(:other_post) { create(:spina_blog_post) }
+
+      it 'returns 1 result' do
+        expect(Spina::Blog::Post.corp).to match_array [post]
+      end
+    end
+
+    describe '.back_office' do
+      let!(:post) { create(:spina_blog_post, back_office: true) }
+      let!(:other_post) { create(:spina_blog_post) }
+
+      it 'returns 1 result' do
+        expect(Spina::Blog::Post.back_office).to match_array [post]
+      end
+    end
   end
 end

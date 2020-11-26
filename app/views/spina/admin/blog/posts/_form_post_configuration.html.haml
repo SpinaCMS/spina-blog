@@ -1,13 +1,27 @@
 #post_configuration.tab-content.well
   .horizontal-form
+    .horizontal-form-group
+      .horizontal-form-label
+        = Spina::Blog::Post.human_attribute_name :corp
+        %small= Spina::Blog::Post.human_attribute_name :corp_description
+      .horizontal-form-content
+        = f.check_box :corp, data: {switch: true}
 
     .horizontal-form-group
       .horizontal-form-label
-        = Spina::Blog::Post.human_attribute_name :category
+        = Spina::Blog::Post.human_attribute_name :back_office
+        %small= Spina::Blog::Post.human_attribute_name :back_office_description
       .horizontal-form-content
-        .select-dropdown
-          = f.select :category_id, Spina::Blog::Category.all.collect{|u| [u.name, u.id]},
-            include_blank: true, prompt: true
+        = f.check_box :back_office, data: {switch: true}
+
+    - if Spina::Blog.feature_enabled?(:categories)
+      .horizontal-form-group
+        .horizontal-form-label
+          = Spina::Blog::Post.human_attribute_name :category
+        .horizontal-form-content
+          .select-dropdown
+            = f.select :category_id, Spina::Blog::Category.all.collect{|u| [u.name, u.id]},
+              include_blank: true, prompt: true
 
     .horizontal-form-group
       .horizontal-form-label
@@ -16,12 +30,13 @@
       .horizontal-form-content
         = f.check_box :draft, data: {switch: true}
 
-    .horizontal-form-group
-      .horizontal-form-label
-        = Spina::Blog::Post.human_attribute_name :featured
-        %small= Spina::Blog::Post.human_attribute_name :featured_description
-      .horizontal-form-content
-        = f.check_box :featured, data: {switch: true}
+    - if Spina::Blog.feature_enabled?(:featured_posts)
+      .horizontal-form-group
+        .horizontal-form-label
+          = Spina::Blog::Post.human_attribute_name :featured
+          %small= Spina::Blog::Post.human_attribute_name :featured_description
+        .horizontal-form-content
+          = f.check_box :featured, data: {switch: true}
 
     .horizontal-form-group
       .horizontal-form-label
@@ -29,7 +44,7 @@
         %small= Spina::Blog::Post.human_attribute_name :slug_description
       .horizontal-form-content
         = f.text_field :slug, placeholder: Spina::Blog::Post.human_attribute_name(:slug_placeholder)
-        - if @post.slug
+        - if Spina::Blog.frontend_enabled? && @post.slug
           %small
             Current permalink:
             \ /blog/posts/#{@post.slug}
@@ -40,10 +55,11 @@
       .horizontal-form-content
         = f.datetime_field :published_at
 
-    .horizontal-form-group
-      .horizontal-form-label
-        = Spina::Blog::Post.human_attribute_name :spina_user
-      .horizontal-form-content
-        .select-dropdown
-          = f.select :user_id, Spina::User.all.collect{|u| [u.name, u.id]},
-            include_blank: true, prompt: true
+    - if Spina::Blog.feature_enabled?(:author)
+      .horizontal-form-group
+        .horizontal-form-label
+          = Spina::Blog::Post.human_attribute_name :spina_user
+        .horizontal-form-content
+          .select-dropdown
+            = f.select :user_id, Spina::User.all.collect{|u| [u.name, u.id]},
+              include_blank: true, prompt: true
