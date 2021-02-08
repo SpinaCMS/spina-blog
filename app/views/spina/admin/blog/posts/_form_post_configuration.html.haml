@@ -1,18 +1,19 @@
 #post_configuration.tab-content.well
   .horizontal-form
-    .horizontal-form-group
-      .horizontal-form-label
-        = Spina::Blog::Post.human_attribute_name :corp
-        %small= Spina::Blog::Post.human_attribute_name :corp_description
-      .horizontal-form-content
-        = f.check_box :corp, data: {switch: true}
+    - if Spina::Blog.with_blog_types
+      .horizontal-form-group
+        .horizontal-form-label
+          = Spina::Blog::Post.human_attribute_name :corp
+          %small= Spina::Blog::Post.human_attribute_name :corp_description
+        .horizontal-form-content
+          = f.check_box :corp, data: {switch: true}
 
-    .horizontal-form-group
-      .horizontal-form-label
-        = Spina::Blog::Post.human_attribute_name :back_office
-        %small= Spina::Blog::Post.human_attribute_name :back_office_description
-      .horizontal-form-content
-        = f.check_box :back_office, data: {switch: true}
+      .horizontal-form-group
+        .horizontal-form-label
+          = Spina::Blog::Post.human_attribute_name :back_office
+          %small= Spina::Blog::Post.human_attribute_name :back_office_description
+        .horizontal-form-content
+          = f.check_box :back_office, data: {switch: true}
 
     - if Spina::Blog.feature_enabled?(:categories)
       .horizontal-form-group
