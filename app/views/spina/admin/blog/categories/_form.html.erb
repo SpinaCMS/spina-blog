@@ -1,8 +1,20 @@
 <%= render Spina::UserInterface::HeaderComponent.new do |header| %>
   <% header.actions do %>
+    <!-- Translations -->
+    <%= render Spina::Pages::TranslationsComponent.new(@category, label: @locale.upcase) %>
+
     <%= button_tag type: :submit, form: dom_id(@category), class: 'btn btn-primary', data: {controller: "button", action: "button#loading", loading_message: t('spina.ui.saving')} do %>
       <%= heroicon('check', style: :solid, class: 'w-5 h-5 mr-1 -ml-2') %>
       <%=t 'spina.blog.categories.save' %>
     <% end %>
   <% end %>
 <% end %>
+
+<div class="p-8">
+  
+  <%= render Spina::Forms::GroupComponent.new(label: Spina::Blog::Category.human_attribute_name(:name)) do %>
+    <%= render Spina::Forms::LabelComponent.new(f, :name) %>
+    <%= render Spina::Forms::TextFieldComponent.new(f, :name, autofocus: @category.name.blank?) %>
+  <% end %>
+
+</div>

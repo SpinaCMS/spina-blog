@@ -1,0 +1,13 @@
+<div class="border-b border-gray-200 flex items-center justify-between space-x-8 px-4 py-3">
+  <div class="font-medium">
+    <%= category.name %>
+  </div>
+  
+  <div class="flex-1"></div>
+  
+  <div>
+    <%= link_to spina.edit_admin_blog_category_path(category.id), class: "btn btn-default px-3" do %>
+      <%= heroicon('pencil', style: :solid, class: 'w-4 h-4') %>
+    <% end %>
+  </div>
+</div>
