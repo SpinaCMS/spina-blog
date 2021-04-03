@@ -8,10 +8,12 @@ module Spina
         before_action :category, except: %i[new create index]
         before_action :set_breadcrumb
         before_action :set_locale
+        
+        admin_section :blog
 
         decorates_assigned :category
 
-        layout 'spina/admin/categories'
+        # layout 'spina/admin/categories'
 
         def index
           @categories = Spina::Blog::Category.order(:name)
