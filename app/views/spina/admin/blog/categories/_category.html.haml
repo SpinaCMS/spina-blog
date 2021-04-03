@@ -1,8 +1,0 @@
-%tr{data: { id: category.id }}
-  %td.nowrap
-    %h3= link_to category.name, spina.edit_admin_blog_category_path(category.id)
-
-  %td.nowrap.text-right
-    = link_to spina.edit_admin_blog_category_path(category.id), class: 'button button-link' do
-      = icon 'pencil-outline'
-      = t('spina.blog.categorys.edit')
