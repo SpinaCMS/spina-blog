@@ -2,6 +2,18 @@
   <% header.actions do %>
     <!-- Translations -->
     <%= render Spina::Pages::TranslationsComponent.new(@category, label: @locale.upcase) %>
+    
+    <% if @category.persisted? %>
+      <%= render Spina::UserInterface::DropdownComponent.new do |dropdown| %>
+        <% dropdown.button(classes: "btn btn-default px-3") do %>
+          <%= heroicon('dots-horizontal', style: :solid, class: "w-5 h-5 text-gray-600") %>
+        <% end %>
+        
+        <% dropdown.menu do %>
+          <%= button_to t('spina.permanently_delete'), spina.admin_blog_category_path(@category.id), method: :delete, class: "block w-full text-left px-4 py-2 text-sm leading-5 font-medium text-red-500 cursor-pointer bg-white hover:bg-red-100 hover:bg-opacity-50 hover:text-red-500 focus:outline-none focus:bg-gray-100 focus:text-gray-900", form: {data: {controller: "confirm", confirm_message: t('spina.blog.categories.delete_confirmation', subject: @category.name)}} %>
+        <% end %>
+      <% end %>
+    <% end %>
 
     <%= button_tag type: :submit, form: dom_id(@category), class: 'btn btn-primary', data: {controller: "button", action: "button#loading", loading_message: t('spina.ui.saving')} do %>
       <%= heroicon('check', style: :solid, class: 'w-5 h-5 mr-1 -ml-2') %>
@@ -12,9 +24,14 @@
 
 <div class="p-8">
   
-  <%= render Spina::Forms::GroupComponent.new(label: Spina::Blog::Category.human_attribute_name(:name)) do %>
-    <%= render Spina::Forms::LabelComponent.new(f, :name) %>
-    <%= render Spina::Forms::TextFieldComponent.new(f, :name, autofocus: @category.name.blank?) %>
+  <%= form_with model: @category, url: @category.new_record? ? spina.admin_blog_categories_path : spina.admin_blog_category_path(@category.id), id: dom_id(@category) do |f| %>
+    <%= hidden_field_tag :locale, @locale %>
+    <% Mobility.with_locale(@locale) do %>
+      <%= render Spina::Forms::GroupComponent.new(label: Spina::Blog::Category.human_attribute_name(:name)) do %>
+        <%= render Spina::Forms::LabelComponent.new(f, :name) %>
+        <%= render Spina::Forms::TextFieldComponent.new(f, :name, autofocus: @category.name.blank?) %>
+      <% end %>
+    <% end %>
   <% end %>
 
 </div>

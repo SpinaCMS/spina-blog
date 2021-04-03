@@ -22,6 +22,7 @@ en:
         save: Save category
         saving: Saving...
         saved: Category saved
+        delete_confirmation: Are you sure you want to delete <strong>%{subject}</strong>?
 
   activerecord:
     attributes:
