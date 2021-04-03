@@ -32,7 +32,7 @@ module Spina
                         notice: t('spina.blog.categories.saved')
           else
             add_breadcrumb I18n.t('spina.blog.categories.new')
-            render :new, layout: 'spina/admin/admin'
+            render :new, status: :unprocessable_entity
           end
         end
 
@@ -42,13 +42,13 @@ module Spina
         end
 
         def update
+          add_breadcrumb @category.name
           if @category.update(category_params)
-            add_breadcrumb @category.name
             redirect_to spina.edit_admin_blog_category_url(
               @category.id, params: { locale: @locale }
             ), notice: t('spina.blog.categories.saved')
           else
-            render :edit, layout: 'spina/admin/admin'
+            render :edit, status: :unprocessable_entity
           end
         end
 
