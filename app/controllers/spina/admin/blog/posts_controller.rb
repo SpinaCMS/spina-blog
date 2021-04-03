@@ -48,7 +48,7 @@ module Spina
                         notice: t('spina.blog.posts.saved')
           else
             add_breadcrumb I18n.t('spina.blog.posts.new')
-            render :new, layout: 'spina/admin/admin'
+            render :new, status: :unprocessable_entity
           end
         end
 
@@ -64,7 +64,7 @@ module Spina
               @post.id, params: { locale: @locale }
             ), notice: t('spina.blog.posts.saved')
           else
-            render :edit, layout: 'spina/admin/admin'
+            render :edit, status: :unprocessable_entity
           end
         end
 
