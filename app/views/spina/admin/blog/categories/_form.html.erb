@@ -1,9 +1,10 @@
 <%= render Spina::UserInterface::HeaderComponent.new do |header| %>
   <% header.actions do %>
-    <!-- Translations -->
-    <%= render Spina::Pages::TranslationsComponent.new(@category, label: @locale.upcase) %>
     
     <% if @category.persisted? %>
+      <!-- Translations -->
+      <%= render Spina::Pages::TranslationsComponent.new(@category, label: @locale.upcase) %>
+    
       <%= render Spina::UserInterface::DropdownComponent.new do |dropdown| %>
         <% dropdown.button(classes: "btn btn-default px-3") do %>
           <%= heroicon('dots-horizontal', style: :solid, class: "w-5 h-5 text-gray-600") %>
