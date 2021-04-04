@@ -31,7 +31,7 @@
 
 <div class="mt-6 relative" data-controller="media-picker" id="<%= dom_id(f.object, f.object.object_id) %>" data-action="media-picker:done->media-picker#handleDone">
   <label class="block text-sm leading-5 font-medium text-gray-700">
-    Image
+    <%= Spina::Blog::Post.human_attribute_name(:image) %>
   </label>
 
   <%= f.hidden_field :image_id, data: {media_picker_target: "imageId"} %>
