@@ -1,22 +1,31 @@
+<%= render Spina::Forms::LabelComponent.new(f, :title) %>
 <%= render Spina::Forms::TextFieldComponent.new(f, :title, size: "lg", autofocus: f.object.title.blank?) %>
 
-<div class="mt-1 relative">
-  <%= f.hidden_field :excerpt, id: "excerpt_input" %>
-
-  <div class="relative form-textarea p-4 shadow-sm max-w-5xl" data-controller="trix" id="insert_excerpt_trix-toolbar" data-action="media-picker:done->trix#insertAttachment">      
-    <%= render Spina::Forms::TrixToolbarComponent.new("excerpt_trix-toolbar") %>
-    
-    <trix-editor class="prose prose-sm focus:outline-none max-w-3xl xl:border-r border-dashed border-gray-200 pr-3" toolbar="excerpt_trix-toolbar" input="excerpt_input" data-trix-target="editor" data-action="trix-file-accept->trix#preventDefault"></trix-editor>
+<div class="mt-6">
+  <%= render Spina::Forms::LabelComponent.new(f, :excerpt) %>
+  
+  <div class="mt-1 relative">   
+    <%= f.hidden_field :excerpt, id: "excerpt_input" %>
+  
+    <div class="relative form-textarea p-4 shadow-sm max-w-5xl" data-controller="trix" id="insert_excerpt_trix-toolbar" data-action="media-picker:done->trix#insertAttachment">      
+      <%= render Spina::Forms::TrixToolbarComponent.new("excerpt_trix-toolbar") %>
+      
+      <trix-editor class="prose prose-sm focus:outline-none max-w-3xl xl:border-r border-dashed border-gray-200 pr-3" toolbar="excerpt_trix-toolbar" input="excerpt_input" data-trix-target="editor" data-action="trix-file-accept->trix#preventDefault"></trix-editor>
+    </div>
   </div>
 </div>
 
-<div class="mt-1 relative">
-  <%= f.hidden_field :content, id: "content_input" %>
-
-  <div class="relative form-textarea p-4 shadow-sm max-w-5xl" data-controller="trix" id="insert_content_trix-toolbar" data-action="media-picker:done->trix#insertAttachment">      
-    <%= render Spina::Forms::TrixToolbarComponent.new("content_trix-toolbar") %>
+<div class="mt-6">
+  <%= render Spina::Forms::LabelComponent.new(f, :content) %>
+  <div class="mt-1 relative">
     
-    <trix-editor class="prose prose-sm focus:outline-none max-w-3xl xl:border-r border-dashed border-gray-200 pr-3" toolbar="content_trix-toolbar" input="content_input" data-trix-target="editor" data-action="trix-file-accept->trix#preventDefault"></trix-editor>
+    <%= f.hidden_field :content, id: "content_input" %>
+  
+    <div class="relative form-textarea p-4 shadow-sm max-w-5xl" data-controller="trix" id="insert_content_trix-toolbar" data-action="media-picker:done->trix#insertAttachment">      
+      <%= render Spina::Forms::TrixToolbarComponent.new("content_trix-toolbar") %>
+      
+      <trix-editor class="prose prose-sm focus:outline-none max-w-3xl xl:border-r border-dashed border-gray-200 pr-3" toolbar="content_trix-toolbar" input="content_input" data-trix-target="editor" data-action="trix-file-accept->trix#preventDefault"></trix-editor>
+    </div>
   </div>
 </div>
 
