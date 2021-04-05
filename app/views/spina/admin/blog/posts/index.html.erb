@@ -4,6 +4,20 @@
       <%= heroicon('plus', style: :solid, class: 'w-6 h-6') %>
     <% end %>
   <% end %>
+  
+  <% header.navigation do %>
+    <nav class="-mb-3 mt-4">
+      <ul class="inline-flex w-auto rounded-md bg-white">
+        <%= render Spina::UserInterface::TabLinkComponent.new(t('spina.blog.posts.all_posts'), spina.admin_blog_posts_path, active: action_name == 'index') %>
+        
+        <%= render Spina::UserInterface::TabLinkComponent.new(t('spina.blog.posts.live_posts'), spina.live_admin_blog_posts_path, active: action_name == 'live') %>
+        
+        <%= render Spina::UserInterface::TabLinkComponent.new(t('spina.blog.posts.draft_posts'), spina.draft_admin_blog_posts_path, active: action_name == 'draft') %>
+        
+        <%= render Spina::UserInterface::TabLinkComponent.new(t('spina.blog.posts.scheduled_posts'), spina.future_admin_blog_posts_path, active: action_name == 'future') %>
+      </ul>
+    </nav>
+  <% end %>
 <% end %>
 
 <div class="p-8">
