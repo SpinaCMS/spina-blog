@@ -1,6 +1,6 @@
 <%= render Spina::Forms::GroupComponent.new(label: Spina::Blog::Category.human_attribute_name(:category)) do %>
   <%= render Spina::Forms::LabelComponent.new(f, :category) %>
-  <%= f.select :category, Spina::Blog::Category.all.collect{|u| [u.name, u.id]}, {prompt: true}, class: 'form-select', data: {controller: "select-placeholder", action: "select-placeholder#update"} %>
+  <%= f.select :category_id, Spina::Blog::Category.all.collect{|u| [u.name, u.id]}, {prompt: true}, class: 'form-select', data: {controller: "select-placeholder", action: "select-placeholder#update"} %>
 <% end %>
 
 <div class="border-t border-gray-200 my-6"></div>
