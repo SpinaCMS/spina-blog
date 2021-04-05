@@ -14,8 +14,6 @@ module Spina
 
         decorates_assigned :post
 
-        layout 'spina/admin/blog'
-
         def index
           @posts = Spina::Blog::Post.order(created_at: :desc)
         end

@@ -13,8 +13,6 @@ module Spina
 
         decorates_assigned :category
 
-        # layout 'spina/admin/categories'
-
         def index
           @categories = Spina::Blog::Category.order(:name)
         end
