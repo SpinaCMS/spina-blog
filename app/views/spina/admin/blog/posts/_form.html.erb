@@ -41,6 +41,14 @@
     
     <%= form_with model: @post, url: @post.new_record? ? spina.admin_blog_posts_path : spina.admin_blog_post_path(@post.id), id: dom_id(@post) do |f| %>
       <%= hidden_field_tag :locale, @locale %>
+      
+      <% if f.object.errors %>
+        <ul class="text-red-500 font-medium">
+          <% f.object.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      <% end %>
     
       <% Mobility.with_locale(@locale) do %>
       

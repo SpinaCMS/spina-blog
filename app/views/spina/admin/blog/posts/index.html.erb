@@ -26,6 +26,8 @@
       <%= render partial: 'post', collection: @posts, as: :post %>
     </div>
   <% else %>
-    There are no posts yet. Create your first one!
+    <div class="text-gray-700 italic">
+      There are no posts yet. Create your first one!
+    </div>
   <% end %>
 </div>
