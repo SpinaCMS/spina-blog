@@ -90,6 +90,7 @@ RSpec.describe Spina::Admin::Blog::CategoriesController, type: :controller do
   end
 
   context 'signed out' do
+    before { Spina::Account.create name: 'My Website', theme: 'default' }
     describe 'GET #index' do
       subject { get :index }
       it { is_expected.to have_http_status :redirect }

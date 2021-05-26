@@ -1,0 +1,33 @@
+<%= render Spina::UserInterface::HeaderComponent.new do |header| %>
+  <% header.after_breadcrumbs do %>
+    <%= link_to spina.new_admin_blog_post_path, class: 'btn btn-default h-8 px-2 ml-3' do %>
+      <%= heroicon('plus', style: :solid, class: 'w-6 h-6') %>
+    <% end %>
+  <% end %>
+  
+  <% header.navigation do %>
+    <nav class="-mb-3 mt-4">
+      <ul class="inline-flex w-auto rounded-md bg-white">
+        <%= render Spina::UserInterface::TabLinkComponent.new(t('spina.blog.posts.all_posts'), spina.admin_blog_posts_path, active: action_name == 'index') %>
+        
+        <%= render Spina::UserInterface::TabLinkComponent.new(t('spina.blog.posts.live_posts'), spina.live_admin_blog_posts_path, active: action_name == 'live') %>
+        
+        <%= render Spina::UserInterface::TabLinkComponent.new(t('spina.blog.posts.draft_posts'), spina.draft_admin_blog_posts_path, active: action_name == 'draft') %>
+        
+        <%= render Spina::UserInterface::TabLinkComponent.new(t('spina.blog.posts.scheduled_posts'), spina.future_admin_blog_posts_path, active: action_name == 'future') %>
+      </ul>
+    </nav>
+  <% end %>
+<% end %>
+
+<div class="p-8">
+  <% if @posts.any? %>
+    <div class="shadow-sm border border-gray-200 bg-white rounded-lg">
+      <%= render partial: 'post', collection: @posts, as: :post %>
+    </div>
+  <% else %>
+    <div class="text-gray-700 italic">
+      There are no posts yet. Create your first one!
+    </div>
+  <% end %>
+</div>

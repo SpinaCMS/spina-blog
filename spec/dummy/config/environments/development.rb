@@ -27,6 +27,9 @@ Rails.application.configure do
 
     config.cache_store = :null_store
   end
+  
+  config.active_storage.service = :local
+  config.active_storage.resolve_model_to_route = :rails_storage_proxy
 
   # Don't care if the mailer can't send.
   config.action_mailer.raise_delivery_errors = false

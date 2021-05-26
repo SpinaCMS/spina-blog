@@ -10,25 +10,23 @@ RSpec.feature 'Admin Posts', type: :system do
 
     it 'shows all the posts' do
       visit '/admin/blog/posts'
-      expect(page).to have_css 'tbody tr', count: 3
+      expect(page).to have_content "Blog Post"
     end
   end
 
   describe 'creating a post' do
     it 'creates a post', js: true do
       visit '/admin/blog/posts'
-      click_on 'New Post'
+      find(:css, 'a[href="/admin/blog/posts/new"]').click
       fill_in 'Post title', with: 'Title of Blog post'
       find(
         :css, 'trix-editor[input*="content_input"]'
       ).set('Foobar')
       click_on 'Save post'
-      within '#header' do
+      within 'nav[data-controller="navigation"]' do
         click_on 'Posts'
       end
-      within 'tbody' do
-        expect(page).to have_content 'Title of Blog post'
-      end
+      expect(page).to have_content 'Title of Blog post'
     end
   end
 end

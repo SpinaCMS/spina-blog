@@ -1,0 +1,7 @@
+<h1><%= @post.title %></h1>
+
+<% if @post.image %>
+  <%= image_tag main_app.url_for(@post.image.file) %>
+<% end %>
+
+<%= @post.content&.html_safe %>

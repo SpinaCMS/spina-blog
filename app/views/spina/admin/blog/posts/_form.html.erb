@@ -1,0 +1,66 @@
+<div data-controller="tabs" data-tabs-active="cursor-default text-gray-900 bg-spina-dark bg-opacity-10" data-tabs-inactive="cursor-pointer bg-transparent text-gray-400 border-transparent">
+  <%= render Spina::UserInterface::HeaderComponent.new do |header| %>
+    <% header.actions do %>
+      
+      <% if @post.persisted? %>
+        <!-- Translations -->
+        <%= render Spina::Pages::TranslationsComponent.new(@post, label: @locale.upcase) %>
+      
+        <%= render Spina::UserInterface::DropdownComponent.new do |dropdown| %>
+          <% dropdown.button(classes: "btn btn-default px-3") do %>
+            <%= heroicon('dots-horizontal', style: :solid, class: "w-5 h-5 text-gray-600") %>
+          <% end %>
+          
+          <% dropdown.menu do %>
+            <%= button_to t('spina.permanently_delete'), spina.admin_blog_post_path(@post.id), method: :delete, class: "block w-full text-left px-4 py-2 text-sm leading-5 font-medium text-red-500 cursor-pointer bg-white hover:bg-red-100 hover:bg-opacity-50 hover:text-red-500 focus:outline-none focus:bg-gray-100 focus:text-gray-900", form: {data: {controller: "confirm", confirm_message: t('spina.blog.posts.delete_confirmation', subject: @post.title)}} %>
+          <% end %>
+        <% end %>
+      <% end %>
+    
+      <%= button_tag type: :submit, form: dom_id(@post), class: 'btn btn-primary', data: {controller: "button", action: "button#loading", loading_message: t('spina.ui.saving')} do %>
+        <%= heroicon('check', style: :solid, class: 'w-5 h-5 mr-1 -ml-2') %>
+        <%=t 'spina.blog.posts.save' %>
+      <% end %>
+      
+    <% end %>
+    
+    <% header.navigation do %>
+      <nav class="-mb-3 mt-4">
+        <ul class="inline-flex w-auto rounded-md bg-white">
+          <% @tabs.each do |tab| %>
+            <button type="button" class="block px-3 leading-relaxed py-1 hover:text-gray-800 rounded-md text-gray-400 font-medium text-sm flex items-center whitespace-nowrap" data-action="tabs#show" data-tabs-target="button" data-pane-id="<%= tab %>">
+              <%= t("spina.blog.posts.#{tab}") %>
+            </button>
+          <% end %>
+        </ul>
+      </nav>
+    <% end %>
+  <% end %>
+  
+  <div class="p-8">
+    
+    <%= form_with model: @post, url: @post.new_record? ? spina.admin_blog_posts_path : spina.admin_blog_post_path(@post.id), id: dom_id(@post) do |f| %>
+      <%= hidden_field_tag :locale, @locale %>
+      
+      <% if f.object.errors %>
+        <ul class="text-red-500 font-medium">
+          <% f.object.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      <% end %>
+    
+      <% Mobility.with_locale(@locale) do %>
+      
+        <% @tabs.each do |tab| %>
+          <div data-tabs-target="pane" id="<%= tab %>">
+            <%= render "form_#{tab}", f: f %>
+          </div>
+        <% end %>
+      
+      <% end %>
+    
+    <% end %>
+    
+  </div>
+</div>

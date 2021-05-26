@@ -9,10 +9,10 @@ module Spina
         before_action :set_breadcrumb
         before_action :set_tabs, only: %i[new create edit update]
         before_action :set_locale
+        
+        admin_section :blog
 
         decorates_assigned :post
-
-        layout 'spina/admin/blog'
 
         def index
           @posts = Spina::Blog::Post.order(created_at: :desc)
@@ -46,7 +46,7 @@ module Spina
                         notice: t('spina.blog.posts.saved')
           else
             add_breadcrumb I18n.t('spina.blog.posts.new')
-            render :new, layout: 'spina/admin/admin'
+            render :new, status: :unprocessable_entity
           end
         end
 
@@ -62,7 +62,7 @@ module Spina
               @post.id, params: { locale: @locale }
             ), notice: t('spina.blog.posts.saved')
           else
-            render :edit, layout: 'spina/admin/admin'
+            render :edit, status: :unprocessable_entity
           end
         end
 

@@ -1,0 +1,7 @@
+<h1>
+  Blog Archive
+  <small><%= formatted_date(params[:year], params[:month]) %></small>
+</h1>
+<ul class="posts">
+  <%= render @posts %>
+</ul>
