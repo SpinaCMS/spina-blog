@@ -14,6 +14,12 @@ pt-BR:
         post_content: Conteúdo
         post_configuration: Configurações
         concept: Rascunho
+        all_posts: All Posts
+        delete_confirmation: Are you sure you want to delete <strong>%{subject}</strong>?
+        draft_posts: Draft Posts
+        live_posts: Live Posts
+        post_seo: Post SEO
+        scheduled_posts: Scheduled Posts
 
       categories:
         title: Categorias
@@ -22,6 +28,7 @@ pt-BR:
         save: Salvar categoria
         saving: Salvando...
         saved: Categoria salva
+        delete_confirmation: Are you sure you want to delete <strong>%{subject}</strong>?
 
   activerecord:
     attributes:
