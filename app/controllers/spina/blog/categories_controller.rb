@@ -10,7 +10,12 @@ module Spina
       before_action :category
       before_action :posts
 
-      def show; end
+      def show
+        respond_to do |format|
+          format.atom
+          format.html { render layout: theme_layout }
+        end
+      end
 
       private
 
@@ -28,6 +33,10 @@ module Spina
           page.link_url = '/blog'
           page.deletable = false
         end
+      end
+      
+      def theme_layout
+        "#{current_theme.name.parameterize.underscore}/application"
       end
     end
   end
