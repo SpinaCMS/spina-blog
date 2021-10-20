@@ -14,6 +14,12 @@ nl:
         post_content: Inhoud
         post_configuration: Instellingen
         concept: Concept
+        all_posts: All Posts
+        delete_confirmation: Are you sure you want to delete <strong>%{subject}</strong>?
+        draft_posts: Draft Posts
+        live_posts: Live Posts
+        post_seo: Post SEO
+        scheduled_posts: Scheduled Posts
 
       categories:
         title: Categorieën
@@ -22,6 +28,7 @@ nl:
         save: Categorie opslaan
         saving: Opslaan...
         saved: Categorie opgeslagen
+        delete_confirmation: Are you sure you want to delete <strong>%{subject}</strong>?
 
   activerecord:
     attributes:
