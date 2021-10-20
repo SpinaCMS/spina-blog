@@ -28,6 +28,17 @@ Or install it yourself as:
 $ gem install spina-blog
 ```
 
+Add to your Spina theme:
+```ruby
+# config/initializers/themes/theme.rb
+
+Spina::Theme.register do |theme|
+  # ...
+  theme.plugins = ['blog']
+end
+
+```
+
 ## Contributing
 The version of Spina to develop this engine against is defined in the gemspec. To override the version of refinery to develop against, edit the project Gemfile to point to a local path containing a clone of Spina CMS.
 
