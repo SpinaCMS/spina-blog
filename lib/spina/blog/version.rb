@@ -3,6 +3,6 @@
 module Spina
   # Spina::Blog
   module Blog
-    VERSION = '0.3.0.ws1'
+    VERSION = '0.3.1.ws'
   end
 end
