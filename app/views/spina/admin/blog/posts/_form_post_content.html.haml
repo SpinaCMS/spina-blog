@@ -41,4 +41,4 @@
             = hidden_field_tag :filename, nil, data: {target: 'image-form.filename'}
           %div
             - if f.object&.image&.file&.attached?
-              = image_tag variant(f.object.image.file, resize: wxh(width: size[:width] / 2, height: size[:height] / 2))
+              = image_tag spina_image_url(f.object.image)
