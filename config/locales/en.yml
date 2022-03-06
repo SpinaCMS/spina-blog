@@ -20,6 +20,10 @@ en:
         live_posts: Live Posts
         post_seo: Post SEO
         scheduled_posts: Scheduled Posts
+        no_posts: There are no posts yet. Create your first one!
+        current_permalink: "Current permalink: %{current_permalink}"
+        scheduled_publication_date: "Will be published on %{date}"
+        created_at_in_words: "Created: %{date} ago"
 
       categories:
         title: Categories
@@ -29,6 +33,7 @@ en:
         saving: Saving...
         saved: Category saved
         delete_confirmation: Are you sure you want to delete <strong>%{subject}</strong>?
+        no_categories: There are no categories yet. Create your first one!
 
   activerecord:
     attributes:

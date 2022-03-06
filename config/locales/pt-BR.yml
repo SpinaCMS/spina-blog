@@ -20,6 +20,10 @@ pt-BR:
         live_posts: Live Posts
         post_seo: Post SEO
         scheduled_posts: Scheduled Posts
+        no_posts: Ainda não há postos. Crie seu primeiro!
+        current_permalink: "Link permanente atual: %{current_permalink}"
+        scheduled_publication_date: "Será publicado em %{date}"
+        created_at_in_words: "Criado: %{date} atrás"
 
       categories:
         title: Categorias
@@ -29,6 +33,7 @@ pt-BR:
         saving: Salvando...
         saved: Categoria salva
         delete_confirmation: Are you sure you want to delete <strong>%{subject}</strong>?
+        no_categories: Ainda não há categorias. Crie sua primeira!
 
   activerecord:
     attributes:

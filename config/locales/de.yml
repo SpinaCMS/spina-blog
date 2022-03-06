@@ -20,6 +20,10 @@ de:
         live_posts: Veröffentlichte Blogeinträge
         post_seo: Suchmaschinen
         scheduled_posts: Geplante Blogeinträge
+        no_posts: Es sind noch keine Blogeinträge vorhanden. Erstelle jetzt den Ersten!
+        current_permalink: "Aktueller Permalink: %{current_permalink}"
+        scheduled_publication_date: "Wird am %{date} veröffentlicht"
+        created_at_in_words: "Erstellt: %{date} her"
 
       categories:
         title: Kategorien
@@ -29,6 +33,7 @@ de:
         saving: Wird gespeichert...
         saved: Kategorie gespeichert
         delete_confirmation: Bist Du sicher, dass Du <strong>%{subject}</strong> löschen möchtest?
+        no_categories: Es sind noch keine Kategorien vorhanden. Erstelle jetzt die Erste!
 
   activerecord:
     attributes:

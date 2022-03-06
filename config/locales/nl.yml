@@ -20,6 +20,10 @@ nl:
         live_posts: Live Posts
         post_seo: Post SEO
         scheduled_posts: Scheduled Posts
+        no_posts: Er zijn nog geen berichten. Maak je eerste!
+        current_permalink: "Huidige permalink: %{current_permalink}"
+        scheduled_publication_date: "Zal worden gepubliceerd op %{date}"
+        created_at_in_words: "Created: %{date} geleden"
 
       categories:
         title: Categorieën
@@ -29,6 +33,7 @@ nl:
         saving: Opslaan...
         saved: Categorie opgeslagen
         delete_confirmation: Are you sure you want to delete <strong>%{subject}</strong>?
+        no_categories: Er zijn nog geen categorieën. Maak uw eerste aan!
 
   activerecord:
     attributes:
