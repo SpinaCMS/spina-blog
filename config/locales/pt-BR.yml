@@ -55,6 +55,10 @@ pt-BR:
         excerpt: Resumo
         spina_user: Autor
         spina_user_description: Escolha o autor deste post
+        seo_title: SEO <title>
+        seo_title_description:
+        description: Meta descrição
+        description_description: Esta descrição será exibida nos resultados de busca
       spina/blog/category:
         name: Nome da categoria
         name_placeholder: Nome da categoria

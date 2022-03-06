@@ -55,6 +55,10 @@ en:
         excerpt: Excerpt
         spina_user: Author
         spina_user_description: Choose the author of this post
+        seo_title: SEO <title>
+        seo_title_description: Make sure your search result looks good in search engines
+        description: Meta description
+        description_description: This description will be shown in search results
       spina/blog/category:
         name: Category name
         name_placeholder: Category name

@@ -55,6 +55,10 @@ de:
         excerpt: Auszug
         spina_user: Autor
         spina_user_description: Wähle den Autoren für diesen Blogeintrag aus
+        seo_title: SEO <title>
+        seo_title_description: Stelle sicher, dass Deine Suchresultate gut aussehen
+        description: Meta Beschreibung
+        description_description: Diese Beschreibung wird in den Suchergebnissen angezeigt
       spina/blog/category:
         name: Name der Kategorie
         name_placeholder: Name der Kategorie

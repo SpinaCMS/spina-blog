@@ -55,6 +55,10 @@ nl:
         excerpt: Uittreksel
         spina_user: Auteur
         spina_user_description: Kies de auteur van deze post
+        seo_title: SEO <title>
+        seo_title_description: Zorg ervoor dat je resultaat in Google er goed uit ziet
+        description: SEO Beschrijving
+        description_description: De beschrijving wordt weergegeven bij resultaten van zoekmachines
         photo: Afbeelding
       spina/blog/category:
         name: Naam categorie
