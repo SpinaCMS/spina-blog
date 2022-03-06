@@ -1,0 +1,48 @@
+de:
+  spina:
+    view: Ansehen
+
+    blog:
+      title: Blog
+
+      posts:
+        title: Blogeinträge
+        new: Neuer Blogeintrag
+        save: Blogeintrag speichern
+        saving: Wird gespeichert...
+        saved: Blogeintrag gespeichert
+        post_content: Inhalt
+        post_configuration: Einstellungen
+        concept: Entwurf
+        all_posts: Alle Blogeinträge
+        delete_confirmation: Bist Du sicher, dass Du <strong>%{subject}</strong> löschen möchtest?
+        draft_posts: Entwürfe
+        live_posts: Veröffentlichte Blogeinträge
+        post_seo: Suchmaschinen
+        scheduled_posts: Geplante Blogeinträge
+
+      categories:
+        title: Kategorien
+        new: Neue Kategorie
+        name: Kategorien
+        save: Kategorie speichern
+        saving: Wird gespeichert...
+        saved: Kategorie gespeichert
+        delete_confirmation: Bist Du sicher, dass Du <strong>%{subject}</strong> löschen möchtest?
+
+  activerecord:
+    attributes:
+      spina/blog/post:
+        title: Titel
+        title_placeholder: Titel des Blogeintrags
+        content: Inhalt
+        draft: Entwurf
+        draft_description: Praktisch, wenn Deine Seite noch nicht ganz fertig ist
+        published_at: Veröffentlichungszeitpunkt
+        slug: Permalink
+        slug_description: Permalink-URL für diesen Blogeintrag
+        excerpt: Auszug
+        spina_user: Autor
+      spina/blog/category:
+        name: Name der Kategorie
+        name_placeholder: Name der Kategorie
