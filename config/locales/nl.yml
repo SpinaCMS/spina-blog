@@ -38,16 +38,23 @@ nl:
   activerecord:
     attributes:
       spina/blog/post:
+        category: Categorie
+        category_description: Kies de categorie voor deze post
         title: Post titel
         title_placeholder: Post titel
         content: Post inhoud
         draft: Concept
         draft_description: Handig voor als je post nog niet helemaal af is
+        featured: Featured
+        featured_description: Feature this post
         published_at: Publicatiedatum/tijd
+        published_at_description: Kies wanneer deze post werd/wordt gepubliceerd
+        image: Afbeelding
         slug: Permalink
         slug_description: Permalink URL for this post
         excerpt: Uittreksel
         spina_user: Auteur
+        spina_user_description: Kies de auteur van deze post
         photo: Afbeelding
       spina/blog/category:
         name: Naam categorie

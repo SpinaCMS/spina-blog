@@ -38,16 +38,23 @@ pt-BR:
   activerecord:
     attributes:
       spina/blog/post:
+        category: Categoria
+        category_description: Escolha a categoria para este posto
         title: Título da Postagem
         title_placeholder: Título da Postagem
         content: Conteúdo da postagem
         draft: Rascunho
         draft_description: Ótimo quando sua postagem não está finalizada
+        featured: Featured
+        featured_description: Feature this post
         published_at: Data/hora da publicação
+        published_at_description: Escolha quando este post foi/virá a ser publicado
+        image: Imagem
         slug: Permalink
         slug_description: URL Permalink para esta postagem
         excerpt: Resumo
         spina_user: Autor
+        spina_user_description: Escolha o autor deste post
       spina/blog/category:
         name: Nome da categoria
         name_placeholder: Nome da categoria

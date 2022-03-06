@@ -38,16 +38,23 @@ de:
   activerecord:
     attributes:
       spina/blog/post:
+        category: Kategorie
+        category_description: Wähle die Kategorie für diesen Blogeintrag aus
         title: Titel
         title_placeholder: Titel des Blogeintrags
         content: Inhalt
         draft: Entwurf
         draft_description: Praktisch, wenn Deine Seite noch nicht ganz fertig ist
+        featured: Vorgestellt
+        featured_description: Hebe diesen Blogeintrag besonders hervor
         published_at: Veröffentlichungszeitpunkt
+        published_at_description: Lege den Zeitpunkt der Veröffentlichung fest
+        image: Bild
         slug: Permalink
         slug_description: Permalink-URL für diesen Blogeintrag
         excerpt: Auszug
         spina_user: Autor
+        spina_user_description: Wähle den Autoren für diesen Blogeintrag aus
       spina/blog/category:
         name: Name der Kategorie
         name_placeholder: Name der Kategorie

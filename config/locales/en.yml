@@ -38,16 +38,23 @@ en:
   activerecord:
     attributes:
       spina/blog/post:
+        category: Category
+        category_description: Choose the category for this post
         title: Post title
         title_placeholder: Post title
         content: Post content
         draft: Draft
         draft_description: Great for when your post is not quite finished
+        featured: Featured
+        featured_description: Feature this post
         published_at: Publishing date/time
+        published_at_description: Choose when this post was/will be published
+        image: Image
         slug: Permalink
         slug_description: Permalink URL for this post
         excerpt: Excerpt
         spina_user: Author
+        spina_user_description: Choose the author of this post
       spina/blog/category:
         name: Category name
         name_placeholder: Category name
