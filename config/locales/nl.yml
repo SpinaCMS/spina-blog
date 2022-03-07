@@ -20,6 +20,10 @@ nl:
         live_posts: Live Posts
         post_seo: Post SEO
         scheduled_posts: Scheduled Posts
+        no_posts: Er zijn nog geen berichten. Maak je eerste!
+        current_permalink: "Huidige permalink: %{current_permalink}"
+        scheduled_publication_date: "Zal worden gepubliceerd op %{date}"
+        created_at_in_words: "Created: %{date} geleden"
 
       categories:
         title: Categorieën
@@ -29,20 +33,32 @@ nl:
         saving: Opslaan...
         saved: Categorie opgeslagen
         delete_confirmation: Are you sure you want to delete <strong>%{subject}</strong>?
+        no_categories: Er zijn nog geen categorieën. Maak uw eerste aan!
 
   activerecord:
     attributes:
       spina/blog/post:
+        category: Categorie
+        category_description: Kies de categorie voor deze post
         title: Post titel
         title_placeholder: Post titel
         content: Post inhoud
         draft: Concept
         draft_description: Handig voor als je post nog niet helemaal af is
+        featured: Featured
+        featured_description: Feature this post
         published_at: Publicatiedatum/tijd
+        published_at_description: Kies wanneer deze post werd/wordt gepubliceerd
+        image: Afbeelding
         slug: Permalink
         slug_description: Permalink URL for this post
         excerpt: Uittreksel
         spina_user: Auteur
+        spina_user_description: Kies de auteur van deze post
+        seo_title: SEO <title>
+        seo_title_description: Zorg ervoor dat je resultaat in Google er goed uit ziet
+        description: SEO Beschrijving
+        description_description: De beschrijving wordt weergegeven bij resultaten van zoekmachines
         photo: Afbeelding
       spina/blog/category:
         name: Naam categorie
