@@ -13,7 +13,7 @@ module Spina
         end
         
         # Add views for purging Tailwind classes
-        ::Spina.config.tailwind_purge_content.concat Spina::Blog::Engine.root.glob("app/views/**/*.*")
+        ::Spina.config.tailwind_content.concat Spina::Blog::Engine.root.glob("app/views/**/*.*")
       end
 
       config.generators do |g|
