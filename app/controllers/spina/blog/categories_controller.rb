@@ -3,7 +3,7 @@
 module Spina
   module Blog
     # Spina::Blog::CategoriesController
-    class CategoriesController < ApplicationController
+    class CategoriesController < ::Spina::ApplicationController
       include ::Spina::Frontend
       
       before_action :page
