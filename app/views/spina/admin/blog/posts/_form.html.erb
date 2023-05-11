@@ -1,6 +1,6 @@
 <div data-controller="tabs" data-tabs-active="cursor-default text-gray-900 bg-spina-dark bg-opacity-10" data-tabs-inactive="cursor-pointer bg-transparent text-gray-400 border-transparent">
   <%= render Spina::UserInterface::HeaderComponent.new do |header| %>
-    <% header.actions do %>
+    <% header.with_actions do %>
       
       <% if @post.persisted? %>
         <!-- Translations -->

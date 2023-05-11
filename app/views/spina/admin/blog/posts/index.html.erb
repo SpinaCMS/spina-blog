@@ -1,11 +1,11 @@
 <%= render Spina::UserInterface::HeaderComponent.new do |header| %>
-  <% header.after_breadcrumbs do %>
+  <% header.with_after_breadcrumbs do %>
     <%= link_to spina.new_admin_blog_post_path, class: 'btn btn-default h-8 px-2 ml-3' do %>
       <%= heroicon('plus', style: :solid, class: 'w-6 h-6') %>
     <% end %>
   <% end %>
   
-  <% header.navigation do %>
+  <% header.with_navigation do %>
     <nav class="-mb-3 mt-4">
       <ul class="inline-flex w-auto rounded-md bg-white">
         <%= render Spina::UserInterface::TabLinkComponent.new(t('spina.blog.posts.all_posts'), spina.admin_blog_posts_path, active: action_name == 'index') %>
