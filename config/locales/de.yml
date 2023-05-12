@@ -1,0 +1,64 @@
+de:
+  spina:
+    view: Ansehen
+
+    blog:
+      title: Blog
+
+      posts:
+        title: Blogeinträge
+        new: Neuer Blogeintrag
+        save: Blogeintrag speichern
+        saving: Wird gespeichert...
+        saved: Blogeintrag gespeichert
+        post_content: Inhalt
+        post_configuration: Einstellungen
+        concept: Entwurf
+        all_posts: Alle Blogeinträge
+        delete_confirmation: Bist Du sicher, dass Du <strong>%{subject}</strong> löschen möchtest?
+        draft_posts: Entwürfe
+        live_posts: Veröffentlichte Blogeinträge
+        post_seo: Suchmaschinen
+        scheduled_posts: Geplante Blogeinträge
+        no_posts: Es sind noch keine Blogeinträge vorhanden. Erstelle jetzt den Ersten!
+        current_permalink: "Aktueller Permalink: %{current_permalink}"
+        scheduled_publication_date: "Wird am %{date} veröffentlicht"
+        created_at_in_words: "Erstellt: %{date} her"
+
+      categories:
+        title: Kategorien
+        new: Neue Kategorie
+        name: Kategorien
+        save: Kategorie speichern
+        saving: Wird gespeichert...
+        saved: Kategorie gespeichert
+        delete_confirmation: Bist Du sicher, dass Du <strong>%{subject}</strong> löschen möchtest?
+        no_categories: Es sind noch keine Kategorien vorhanden. Erstelle jetzt die Erste!
+
+  activerecord:
+    attributes:
+      spina/blog/post:
+        category: Kategorie
+        category_description: Wähle die Kategorie für diesen Blogeintrag aus
+        title: Titel
+        title_placeholder: Titel des Blogeintrags
+        content: Inhalt
+        draft: Entwurf
+        draft_description: Praktisch, wenn Deine Seite noch nicht ganz fertig ist
+        featured: Vorgestellt
+        featured_description: Hebe diesen Blogeintrag besonders hervor
+        published_at: Veröffentlichungszeitpunkt
+        published_at_description: Lege den Zeitpunkt der Veröffentlichung fest
+        image: Bild
+        slug: Permalink
+        slug_description: Permalink-URL für diesen Blogeintrag
+        excerpt: Auszug
+        spina_user: Autor
+        spina_user_description: Wähle den Autoren für diesen Blogeintrag aus
+        seo_title: SEO <title>
+        seo_title_description: Stelle sicher, dass Deine Suchresultate gut aussehen
+        description: Meta Beschreibung
+        description_description: Diese Beschreibung wird in den Suchergebnissen angezeigt
+      spina/blog/category:
+        name: Name der Kategorie
+        name_placeholder: Name der Kategorie
