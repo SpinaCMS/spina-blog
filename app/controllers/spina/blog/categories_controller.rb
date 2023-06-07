@@ -9,11 +9,12 @@ module Spina
       before_action :page
       before_action :category
       before_action :posts
+      before_action :set_theme
 
       def show
         respond_to do |format|
           format.atom
-          format.html { render layout: theme_layout }
+          format.html { render "#{@theme || 'spina'}/blog/categories/show", layout: theme_layout }
         end
       end
 
@@ -35,8 +36,12 @@ module Spina
         end
       end
       
+      def set_theme
+        @theme = current_theme.name.parameterize.underscore
+      end
+
       def theme_layout
-        "#{current_theme.name.parameterize.underscore}/application"
+        "#{@theme}/#{@page.layout_template || 'application'}"
       end
     end
   end
