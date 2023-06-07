@@ -8,6 +8,7 @@ module Spina
 
       before_action :find_posts, only: [:index]
       before_action :current_spina_user_can_view_page?
+      before_action :set_theme
 
       decorates_assigned :posts, :post
 
@@ -16,13 +17,13 @@ module Spina
 
         respond_to do |format|
           format.atom
-          format.html { render layout: theme_layout }
+          format.html { render "#{@theme || 'spina'}/blog/posts/index", layout: theme_layout }
         end
       end
 
       def show
         @post = Spina::Blog::Post.friendly.find params[:id]
-        render layout: theme_layout
+        render "#{@theme || 'spina'}/blog/posts/show", layout: theme_layout
       rescue ActiveRecord::RecordNotFound
         try_redirect
       end
@@ -46,8 +47,12 @@ module Spina
         start_date.end_of_year
       end
 
+      def set_theme
+        @theme = current_theme.name.parameterize.underscore
+      end
+
       def theme_layout
-        "#{current_theme.name.parameterize.underscore}/application"
+        "#{@theme}/#{@page.layout_template || 'application'}"
       end
 
       def page
