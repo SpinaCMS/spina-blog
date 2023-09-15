@@ -17,14 +17,18 @@ module Spina
 
       def initialize
         @posts_years =
-          Spina::Blog::Post
-            .live
-            .pluck(:published_at)
-            .map(&:year)
-            .tally
-            .map do |year, count|
-              PostsYear.new(year: year, count: count)
-            end
+          ActiveRecord::Base.connection.execute(query).map do |result|
+            PostsYear.new(year: result['published_at_year'], count: result['count'])
+          end
+      end
+
+      def query
+        <<~SQL
+        select extract('Year' from published_at) as published_at_year, count(extract('Year' from published_at))
+        from spina_blog_posts
+        where draft=false
+        group by published_at_year
+        SQL
       end
 
     end
