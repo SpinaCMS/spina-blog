@@ -24,7 +24,7 @@ module Spina
 
       def query
         <<~SQL
-        select extract('Year' from published_at) as published_at_year, count(extract('Year' from published_at))
+        select cast(extract('Year' from published_at) as text) as published_at_year, count(extract('Year' from published_at))
         from spina_blog_posts
         where draft=false
         group by published_at_year
