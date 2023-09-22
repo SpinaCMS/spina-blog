@@ -79,6 +79,7 @@ module Spina
       end
 
       def add_view_path
+        ActiveSupport::Deprecation.warn 'Blog views should be moved from "app/views/spina/blog" to "app/views/(your_theme)/blog".'
         prepend_view_path ["app/views/#{@theme}", "app/views/spina/", Spina::Blog::Engine.root.join('app', 'views', 'spina')]
       end
     end
