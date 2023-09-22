@@ -24,7 +24,7 @@ module Spina
 
       def show
         @post = Spina::Blog::Post.friendly.find params[:id]
-        render layout: theme_layout
+        render 'blog/posts/show', layout: theme_layout
       rescue ActiveRecord::RecordNotFound
         try_redirect
       end
@@ -35,7 +35,7 @@ module Spina
                                   .order(published_at: :desc)
                                   .page(params[:page])
 
-        render 'blog/posts/show', layout: theme_layout
+        render 'blog/posts/archive', layout: theme_layout
       end
 
       private
