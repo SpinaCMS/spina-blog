@@ -20,6 +20,10 @@ en:
         live_posts: Live Posts
         post_seo: Post SEO
         scheduled_posts: Scheduled Posts
+        no_posts: There are no posts yet. Create your first one!
+        current_permalink: "Current permalink: %{current_permalink}"
+        scheduled_publication_date: "Will be published on %{date}"
+        created_at_in_words: "Created: %{date} ago"
 
       categories:
         title: Categories
@@ -29,20 +33,32 @@ en:
         saving: Saving...
         saved: Category saved
         delete_confirmation: Are you sure you want to delete <strong>%{subject}</strong>?
+        no_categories: There are no categories yet. Create your first one!
 
   activerecord:
     attributes:
       spina/blog/post:
+        category: Category
+        category_description: Choose the category for this post
         title: Post title
         title_placeholder: Post title
         content: Post content
         draft: Draft
         draft_description: Great for when your post is not quite finished
+        featured: Featured
+        featured_description: Feature this post
         published_at: Publishing date/time
+        published_at_description: Choose when this post was/will be published
+        image: Image
         slug: Permalink
         slug_description: Permalink URL for this post
         excerpt: Excerpt
         spina_user: Author
+        spina_user_description: Choose the author of this post
+        seo_title: SEO <title>
+        seo_title_description: Make sure your search result looks good in search engines
+        description: Meta description
+        description_description: This description will be shown in search results
       spina/blog/category:
         name: Category name
         name_placeholder: Category name
