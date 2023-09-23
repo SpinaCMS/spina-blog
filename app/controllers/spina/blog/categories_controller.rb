@@ -13,7 +13,7 @@ module Spina
 
       def show
         respond_to do |format|
-          format.atom
+          format.atom { render 'blog/posts/index' }
           format.html { render "#{@theme || 'spina'}/blog/categories/show", layout: theme_layout }
         end
       end
