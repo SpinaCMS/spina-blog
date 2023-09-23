@@ -10,11 +10,12 @@ module Spina
       before_action :category
       before_action :posts
       before_action :set_theme
+      before_action :add_view_path
 
       def show
         respond_to do |format|
           format.atom
-          format.html { render "#{@theme || 'spina'}/blog/categories/show", layout: theme_layout }
+          format.html { render 'blog/categories/show', layout: theme_layout }
         end
       end
 
@@ -42,6 +43,11 @@ module Spina
 
       def theme_layout
         "#{@theme}/#{@page.layout_template || 'application'}"
+      end
+
+      def add_view_path
+        ActiveSupport::Deprecation.warn 'Blog views should be moved from "app/views/spina/blog" to "app/views/(your_theme)/blog".'
+        prepend_view_path ["app/views/#{@theme}", "app/views/spina", Spina::Blog::Engine.root.join('app', 'views', 'spina')]
       end
     end
   end

@@ -9,6 +9,7 @@ module Spina
       before_action :find_posts, only: [:index]
       before_action :current_spina_user_can_view_page?
       before_action :set_theme
+      before_action :add_view_path
 
       decorates_assigned :posts, :post
 
@@ -17,13 +18,13 @@ module Spina
 
         respond_to do |format|
           format.atom
-          format.html { render "#{@theme || 'spina'}/blog/posts/index", layout: theme_layout }
+          format.html { render 'blog/posts/index', layout: theme_layout }
         end
       end
 
       def show
         @post = Spina::Blog::Post.friendly.find params[:id]
-        render "#{@theme || 'spina'}/blog/posts/show", layout: theme_layout
+        render 'blog/posts/show', layout: theme_layout
       rescue ActiveRecord::RecordNotFound
         try_redirect
       end
@@ -34,7 +35,7 @@ module Spina
                                   .order(published_at: :desc)
                                   .page(params[:page])
 
-        render layout: theme_layout
+        render 'blog/posts/archive', layout: theme_layout
       end
 
       private
@@ -75,6 +76,11 @@ module Spina
 
       def current_spina_user_can_view_page?
         raise ActiveRecord::RecordNotFound unless current_spina_user.present? || page.live?
+      end
+
+      def add_view_path
+        ActiveSupport::Deprecation.warn 'Blog views should be moved from "app/views/spina/blog" to "app/views/(your_theme)/blog".'
+        prepend_view_path ["app/views/#{@theme}", "app/views/spina/", Spina::Blog::Engine.root.join('app', 'views', 'spina')]
       end
     end
   end
