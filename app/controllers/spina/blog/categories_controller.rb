@@ -14,7 +14,7 @@ module Spina
 
       def show
         respond_to do |format|
-          format.atom
+          format.atom { render 'blog/categories/show' }
           format.html { render 'blog/categories/show', layout: theme_layout }
         end
       end
