@@ -3,11 +3,21 @@
 require 'rails_helper'
 
 RSpec.describe Spina::Admin::Blog::PostsController, type: :controller do
-  let(:posts) { create_list(:spina_blog_post, 3) }
-  let(:blog_post) { create(:spina_blog_post) }
+  let(:user)        { create(:spina_user) }
+  let(:category)    { create(:spina_blog_category) }
+  let(:posts)       { create_list(:spina_blog_post, 3) }
+  let(:blog_post)   { create(:spina_blog_post) }
   let(:draft_posts) { create_list(:spina_blog_post, 3, draft: true) }
-  let(:live_posts) { create_list(:spina_blog_post, 3, draft: false) }
-  let(:post_attributes) { attributes_for(:spina_blog_post) }
+  let(:live_posts)  { create_list(:spina_blog_post, 3, draft: false) }
+  let(:post_attributes) do
+    attributes_for(:spina_blog_post).merge(
+      user_id: user.id,
+      category_id: category.id
+    )
+  end
+  let(:invalid_post_attributes) do
+    attributes_for(:invalid_spina_blog_post)
+  end
 
   routes { Spina::Engine.routes }
 
@@ -85,17 +95,19 @@ RSpec.describe Spina::Admin::Blog::PostsController, type: :controller do
     end
 
     describe 'POST #create' do
-      subject { post :create, params: { post: post_attributes } }
+      context 'with valid attributes' do
+        subject { post :create, params: { post: post_attributes } }
 
-      it { is_expected.to have_http_status :redirect }
-      it {
-        subject
-        expect(flash[:notice]).to eq 'Post saved'
-      }
-      it { expect { subject }.to change(Spina::Blog::Post, :count).by(1) }
+        it { is_expected.to have_http_status :redirect }
+        it {
+          subject
+          expect(flash[:notice]).to eq 'Post saved'
+        }
+        it { expect { subject }.to change(Spina::Blog::Post, :count).by(1) }
+      end
 
       context 'with invalid attributes' do
-        subject { post :create, params: { post: { content: 'foo' } } }
+        subject { post :create, params: { post: invalid_post_attributes } }
 
         it { is_expected.to_not have_http_status :redirect }
         it { expect { subject }.to_not change(Spina::Blog::Post, :count) }
