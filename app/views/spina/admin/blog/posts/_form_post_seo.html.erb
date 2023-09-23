@@ -1,7 +1,9 @@
-<%= render Spina::Forms::GroupComponent.new(label: Spina::Blog::Post.human_attribute_name(:seo_title), description: Spina::Blog::Post.human_attribute_name(:description)) do %>
+<%= render Spina::Forms::GroupComponent.new(label: Spina::Blog::Post.human_attribute_name(:seo_title), description: Spina::Blog::Post.human_attribute_name(:seo_title_description)) do %>
   <%= render Spina::Forms::TextFieldComponent.new(f, :seo_title) %>
-  
-  <div class="mt-5">
-    <%= render Spina::Forms::TextFieldComponent.new(f, :description) %>
-  </div>
+<% end %>
+
+<div class="border-t border-gray-200 my-6"></div>
+
+<%= render Spina::Forms::GroupComponent.new(label: Spina::Blog::Post.human_attribute_name(:description), description: Spina::Blog::Post.human_attribute_name(:description_description)) do %>
+  <%= render Spina::Forms::TextFieldComponent.new(f, :description) %>
 <% end %>

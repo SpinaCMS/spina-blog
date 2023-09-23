@@ -1,0 +1,5 @@
+<ul class="spina-blog-archived-posts-widget">
+  <% @posts_years.each do |py| %>
+    <li class="spina-blog-archived-posts-widget-year"><%= link_to(py.year, py.path) %> (<%= py.count %>)</li>
+  <% end %>
+</ul>
