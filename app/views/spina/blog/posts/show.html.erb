@@ -5,3 +5,10 @@
 <% end %>
 
 <%= @post.content&.html_safe %>
+
+Share this post:
+<ul>
+  <li><%= link_to 'Facebook', "https://www.facebook.com/sharer.php?u=#{spina.blog_post_url(@post)}", target: 0 %></li>
+  <li><%= link_to 'X', "http://x.com/share?url=#{spina.blog_post_url(@post)}&text=#{@post.title}", target: 0 %></li>
+  <li><%= link_to 'Email', "mailto:?subject=#{@post.title}&body=#{spina.blog_post_url(@post)}", target: 0 %></li>
+</ul>
