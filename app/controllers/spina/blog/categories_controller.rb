@@ -5,12 +5,14 @@ module Spina
     # Spina::Blog::CategoriesController
     class CategoriesController < ::Spina::ApplicationController
       include ::Spina::Frontend
-      
+
       before_action :page
       before_action :category
       before_action :posts
       before_action :set_theme
       before_action :add_view_path
+
+      decorates_assigned :posts
 
       def show
         respond_to do |format|
@@ -36,7 +38,7 @@ module Spina
           page.deletable = false
         end
       end
-      
+
       def set_theme
         @theme = current_theme.name.parameterize.underscore
       end
