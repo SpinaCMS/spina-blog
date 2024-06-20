@@ -9,7 +9,7 @@ module Spina
         before_action :set_breadcrumb
         before_action :set_tabs, only: %i[new create edit update]
         before_action :set_locale
-        
+
         admin_section :blog
 
         decorates_assigned :post
