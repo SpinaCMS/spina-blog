@@ -3,15 +3,10 @@
 module Spina
   # Spina::Blog
   module Blog
-    include ActiveSupport::Configurable
-
-    config_accessor :title, :controller, :description, :spina_icon, :plugin_type
-
-    self.title = 'Blog'
-    self.controller = 'blog'
-    self.description = 'Blog posts'
-    self.spina_icon = 'pencil-outline'
-
-    self.plugin_type = 'website_resource'
+    mattr_accessor :title, default: 'Blog'
+    mattr_accessor :controller, default: 'blog',
+    mattr_accessor :description, default: 'Blog posts'
+    mattr_accessor :spina_icon, default: 'pencil-outline'
+    mattr_accessor :plugin_type, default: 'website_resource'
   end
 end
