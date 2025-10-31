@@ -52,7 +52,9 @@ RSpec.describe Spina::Blog::PostsController, type: :controller do
     context 'with a year' do
       let(:this_year_posts) do
         create_list :spina_blog_post, 3,
-                    draft: false, published_at: Time.zone.today.beginning_of_year
+                    draft: false,
+                    published_at: Time.zone.today.beginning_of_year
+
       end
       let(:last_year_posts) do
         create_list :spina_blog_post, 3,
